@@ -1,26 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './stylecherry.css';
+import GhoulCard from './components/GhoulCard';
+
+const ghoulsData = [
+  { name: "Sodo / Dewdrop", role: "A feisty ghoul, and their lead guitarist.", image: "/images/sodobb.jpg", customClass: "Sodo" },
+  { name: "Swiss / Multi-Ghoul", role: "A freaky ghoul often seen to smile really wide to scare fans, that knows how to play multiple instruments, that's why he's called multi-ghoul.", image: "/images/swiss.jpg", customClass: "Swiss" },
+  { name: "Aether", role: "A ghoul who often duels with Sodo, and their rhythm guitarist.", image: "/images/banana.jpg", customClass: "Aether" },
+  { name: "Rain / Water", role: "A ghoul who fell off the stage during one of his earlier performances, known as grandmaster ass wobbler. Played as the bassist.", image: "/images/rain.jpg", customClass: "Rain" },
+  { name: "Mountain / Earth", role: "A ghoul that's really tall, he plays drums, would often throw his drum sticks to the crowd.", image: "/images/mount.jpg", customClass: "Mountain" },
+  { name: "Cumulus / Air", role: "The Lioness, mainly does backup vocals and plays the keyboard.", image: "/images/cumu.jpg", customClass: "Cumulus" },
+  { name: "Cirrus / Air", role: "A ghoul known for her keytar solo in Mummy Dust and for affectionately interacting with those around her.", image: "/images/cirrus.jpg", customClass: "Cirrus" },
+  { name: "Aurora / Light", role: "A ghoul that likes to dance around with Swiss/Multi-Ghoul. Maintained the secondary keyboards.", image: "/images/fly.jpg", customClass: "Aurora" },
+  { name: "Sunshine / Light", role: "A ghoul notably more chaotic and risqué, plays the tambourine and shaker, also likes to wear her jacket more than the other ghoulletes who wear capes.", image: "/images/sun.jpg", customClass: "Sunshine" }
+];
 
 function App() {
   const [visitorName, setVisitorName] = useState('Fellow Ghoul');
   const [bandSuggestion, setBandSuggestion] = useState('');
+  
+  const [nameInput, setNameInput] = useState('');
+  const [suggestionInput, setSuggestionInput] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  useEffect(() => {
-    try {
-      if (typeof window !== 'undefined' && typeof window.prompt === 'function') {
-        const name = window.prompt("Welcome to the Ghost Fanpage! What is your name?", "Little Ghoul");
-        if (name && name.trim() !== "") {
-          setVisitorName(name);
-        }
-        const suggestion = window.prompt(`Hi ${name || 'Little Ghoul'}! Do you have any other band suggestions you think a Ghost fan would like?`);
-        if (suggestion && suggestion.trim() !== "") {
-          setBandSuggestion(suggestion);
-        }
-      }
-    } catch (e) {
-      console.warn("Native prompt dialog is disabled in this environment:", e);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (nameInput.trim() !== '') {
+      setVisitorName(nameInput.trim());
     }
-  }, []);
+    if (suggestionInput.trim() !== '') {
+      setBandSuggestion(suggestionInput.trim());
+    }
+    setIsSubmitted(true);
+  };
 
   return (
     <div>
@@ -28,12 +39,38 @@ function App() {
       <header className="Ht" id="tribut">
         <h1>GHOST TRIBUTE</h1>
         <p>Just wanted to introduce the amazing world of Ghost!</p>
-        <div style={{ marginTop: '1rem', color: '#d4af37' }}>
-          <p><strong>Welcome, {visitorName}!</strong></p>
-          {bandSuggestion && (
-            <p><em>Thanks for suggesting: <strong>{bandSuggestion}</strong>! We'll check them out! 🤘</em></p>
-          )}
-        </div>
+
+        {!isSubmitted ? (
+          <form onSubmit={handleSubmit} style={{ marginTop: '1.2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.6rem' }}>
+            <p style={{ color: '#d4af37', fontSize: '0.95rem', margin: 0 }}>Join the ritual! Tell us your name & favorite band recommendation:</p>
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+              <input 
+                type="text" 
+                placeholder="Your Name (e.g. Little Ghoul)" 
+                value={nameInput}
+                onChange={(e) => setNameInput(e.target.value)}
+                style={{ padding: '0.4rem 0.8rem', borderRadius: '4px', border: '1px solid #444', background: '#222', color: '#fff' }}
+              />
+              <input 
+                type="text" 
+                placeholder="Other band suggestion" 
+                value={suggestionInput}
+                onChange={(e) => setSuggestionInput(e.target.value)}
+                style={{ padding: '0.4rem 0.8rem', borderRadius: '4px', border: '1px solid #444', background: '#222', color: '#fff' }}
+              />
+              <button type="submit" style={{ padding: '0.4rem 1rem', borderRadius: '4px', background: '#d4af37', color: '#000', fontWeight: 'bold', cursor: 'pointer', border: 'none' }}>
+                Enter
+              </button>
+            </div>
+          </form>
+        ) : (
+          <div style={{ marginTop: '1.0rem', color: '#d4af37' }}>
+            <p><strong>Welcome, {visitorName}!</strong></p>
+            {bandSuggestion && (
+              <p><em>Thanks for suggesting: <strong>{bandSuggestion}</strong>! We'll check them out! 🤘</em></p>
+            )}
+          </div>
+        )}
       </header>
 
       {/* NAVIGATION */}
@@ -110,84 +147,69 @@ function App() {
           <p>This is mostly of the Ghouls that joined and ones that actually did leave a mark on the band:</p>
 
           <div className="ghouls-grid">
-            <div className="ghoul-card Sodo">
-              <img src="/images/sodobb.jpg" alt="Sodo/Dewdrop" className="card-image" />
-              <div className="card-content">
-                <h3>Sodo / Dewdrop</h3>
-                <p>A feisty ghoul, and their lead guitarist.</p>
-              </div>
-            </div>
-
-            <div className="ghoul-card Swiss">
-              <img src="/images/swiss.jpg" alt="Swiss/Multi-Ghoul" className="card-image" />
-              <div className="card-content">
-                <h3>Swiss / Multi-Ghoul</h3>
-                <p>A freaky ghoul often seen to smile really wide to scare fans, that knows how to play multiple instruments, that's why he's called multi-ghoul.</p>
-              </div>
-            </div>
-
-            <div className="ghoul-card Aether">
-              <img src="/images/banana.jpg" alt="Aether" className="card-image" />
-              <div className="card-content">
-                <h3>Aether</h3>
-                <p>A ghoul who often duels with Sodo, and their rhythm guitarist.</p>
-              </div>
-            </div>
-
-            <div className="ghoul-card Rain">
-              <img src="/images/rain.jpg" alt="Rain/Water" className="card-image" />
-              <div className="card-content">
-                <h3>Rain / Water</h3>
-                <p>A ghoul who fell off the stage during one of his earlier performances, known as grandmaster ass wobbler. Played as the bassist.</p>
-              </div>
-            </div>
-
-            <div className="ghoul-card Mountain">
-              <img src="/images/mount.jpg" alt="Mountain" className="card-image" />
-              <div className="card-content">
-                <h3>Mountain / Earth</h3>
-                <p>A ghoul that's really tall, he plays drums, would often throw his drum sticks to the crowd.</p>
-              </div>
-            </div>
-
-            <div className="ghoul-card Cumulus">
-              <img src="/images/cumu.jpg" alt="Cumulus/Air" className="card-image" />
-              <div className="card-content">
-                <h3>Cumulus / Air</h3>
-                <p>The Lioness, mainly does backup vocals and plays the keyboard.</p>
-              </div>
-            </div>
-
-            <div className="ghoul-card Cirrus">
-              <img src="/images/cirrus.jpg" alt="Cirrus/Air" className="card-image" />
-              <div className="card-content">
-                <h3>Cirrus / Air</h3>
-                <p>A ghoul known for her keytar solo in Mummy Dust and for affectionately interacting with those around her.</p>
-              </div>
-            </div>
-
-            <div className="ghoul-card Aurora">
-              <img src="/images/fly.jpg" alt="Aurora/Light" className="card-image" />
-              <div className="card-content">
-                <h3>Aurora / Light</h3>
-                <p>A ghoul that likes to dance around with Swiss/Multi-Ghoul. Maintained the secondary keyboards.</p>
-              </div>
-            </div>
-
-            <div className="ghoul-card Sunshine">
-              <img src="/images/sun.jpg" alt="Sunshine/Light" className="card-image" />
-              <div className="card-content">
-                <h3>Sunshine / Light</h3>
-                <p>A ghoul notably more chaotic and risqué, plays the tambourine and shaker, also likes to wear her jacket more than the other ghoulletes who wear capes.</p>
-              </div>
-            </div>
+            {ghoulsData.map((ghoul, index) => (
+              <GhoulCard 
+                key={index}
+                name={ghoul.name}
+                role={ghoul.role}
+                image={ghoul.image}
+                customClass={ghoul.customClass}
+              />
+            ))}
           </div>
+        </section>
+
+        {/* PAPA FOCUS SECTION */}
+        <section id="vocalist">
+          <h2>Papa EMERITUS or COPIA</h2>
+          <p>The frontman for Ghost, many papas appear as the band changes through phases from Opus Eponymous onto Skeletá...</p>
+          <p>Though in truth all papas are played by the same person, who is named Tobias Forge...</p>
+
+          <h3>List of Papas:</h3>
+          <ul>
+            <li>Papa Emeritus I (2008–2012)</li>
+            <li>Papa Emeritus II (2012–2015)</li>
+            <li>Papa Emeritus III (2015–2020)</li>
+            <li>Cardinal Copia / Papa Emeritus IV (2020–Present)</li>
+          </ul> 
+        </section> 
+
+        {/* FAVORITE ALBUMS SECTION */}
+        <section id="albums">
+          <h2>Favorite Albums</h2>
+          <article>
+            <h3>Seven Inches of Satanic Panic</h3>
+            <p>This album contained two of the iconic song tracks as I think this is where they began
+               to become more famous as their cover on Mary on a cross was a hit to many.
+            </p>
+            <a href="https://youtu.be/kC_bFsGUVyg?si=-gJ3LOQ2m5ci_jkF" target="_blank" rel="noreferrer">
+                <img src="/images/seven.jpg" alt="Mary On A cross" className="pfp-img" />
+            </a>
+
+            <a href="https://www.youtube.com/watch?v=YOUR_YOUTUBE_LINK_HERE" target="_blank" rel="noreferrer">
+                <img src="/images/seven.jpg" alt="Kiss the Go-Goat" className="pfp-img" />
+            </a>
+          </article>
+
+          <article>
+            <h3>Meliora (2015)</h3>
+            <p>This album was mostly on repeat for me, especially their songs Mummy dust, He is, Cirice, From pinnacle to the pit</p>
+            <a href="https://www.youtube.com/watch?v=YOUR_YOUTUBE_LINK_HERE" target="_blank" rel="noreferrer">
+                <img src="/images/Meli.JPG" alt="Mummy Dust" className="pfp-img" />
+            </a>
+            <a href="https://youtu.be/kC_bFsGUVyg?si=-gJ3LOQ2m5ci_jkF" target="_blank" rel="noreferrer">
+                <img src="/images/Meli.JPG" alt="He is" className="pfp-img" />
+            </a>
+            <a href="https://youtu.be/KOrXKiSy8ZY?si=a81UAKpUwxo4dA9E" target="_blank" rel="noreferrer">
+                <img src="/images/Meli.JPG" alt="Cirice" className="pfp-img" />
+            </a>
+          </article>
         </section>
       </main>
 
       {/* FOOTER */}
       <footer>
-        <p>&copy; 2026 FINAL WEB PROJECT | Created for Ghost Band Tribute, all credits go to the respective owners</p>
+        <p>&copy; 2026 Final Web | Created for Ghost Band Tribute, all credits go to the respective owners</p>
       </footer>
     </div>
   );
