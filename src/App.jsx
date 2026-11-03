@@ -6,14 +6,19 @@ function App() {
   const [bandSuggestion, setBandSuggestion] = useState('');
 
   useEffect(() => {
-    // Dynamic greeting from your script.js
-    const name = prompt("Welcome to the Ghost Fanpage! What is your name?", "Little Ghoul");
-    if (name && name.trim() !== "") {
-      setVisitorName(name);
-    }
-    const suggestion = prompt(`Hi ${name || 'Little Ghoul'}! Do you have any other band suggestions you think a Ghost fan would like?`);
-    if (suggestion && suggestion.trim() !== "") {
-      setBandSuggestion(suggestion);
+    try {
+      if (typeof window !== 'undefined' && typeof window.prompt === 'function') {
+        const name = window.prompt("Welcome to the Ghost Fanpage! What is your name?", "Little Ghoul");
+        if (name && name.trim() !== "") {
+          setVisitorName(name);
+        }
+        const suggestion = window.prompt(`Hi ${name || 'Little Ghoul'}! Do you have any other band suggestions you think a Ghost fan would like?`);
+        if (suggestion && suggestion.trim() !== "") {
+          setBandSuggestion(suggestion);
+        }
+      }
+    } catch (e) {
+      console.warn("Native prompt dialog is disabled in this environment:", e);
     }
   }, []);
 
