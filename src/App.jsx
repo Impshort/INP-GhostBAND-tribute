@@ -6,7 +6,7 @@ import PapaFocus from './components/PapaFocus';
 import AlbumSection from './components/AlbumSection';
 
 const ghoulsData = [
-  { name: "Sodo / Dewdrop", role: "A feisty ghoul, and their lead guitarist.", image: "/images/sodobb.jpg", customClass: "Sodo" },
+  { name: "Sodo / Dewdrop(Main Lead)", role: "A feisty ghoul, and their lead guitarist.", image: "/images/sodobb.jpg", customClass: "Sodo" },
   { name: "Swiss / Multi-Ghoul", role: "A freaky ghoul often seen to smile really wide to scare fans, that knows how to play multiple instruments, that's why he's called multi-ghoul.", image: "/images/swiss.jpg", customClass: "Swiss" },
   { name: "Aether (Rhythm Guitarist)", role: "A ghoul who often duels with Sodo, and their rhythm guitarist.", image: "/images/banana.jpg", customClass: "Aether" },
   { name: "Rain / Water (Bassist)", role: "A ghoul who fell off the stage during one of his earlier performances, known as grandmaster ass wobbler. ", image: "/images/rain.jpg", customClass: "Rain" },
