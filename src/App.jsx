@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './stylecherry.css';
-import GhoulCard from './components/GhoulCard';
 import Navbar from './components/Navbar';
+import GhoulCard from './components/GhoulCard';
+
 
 const ghoulsData = [
   { name: "Sodo / Dewdrop", role: "A feisty ghoul, and their lead guitarist.", image: "/images/sodobb.jpg", customClass: "Sodo" },
