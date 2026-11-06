@@ -5,7 +5,6 @@ import GhoulCard from './components/GhoulCard';
 import PapaFocus from './components/PapaFocus';
 import AlbumSection from './components/AlbumSection';
 
-
 const ghoulsData = [
   { name: "Sodo / Dewdrop", role: "A feisty ghoul, and their lead guitarist.", image: "/images/sodobb.jpg", customClass: "Sodo" },
   { name: "Swiss / Multi-Ghoul", role: "A freaky ghoul often seen to smile really wide to scare fans, that knows how to play multiple instruments, that's why he's called multi-ghoul.", image: "/images/swiss.jpg", customClass: "Swiss" },
@@ -156,30 +155,15 @@ function App() {
         </section>
 
         {/* PAPA FOCUS SECTION */}
-        <PapaFocus/>
+        <PapaFocus />
 
         {/* FAVORITE ALBUMS SECTION */}
-        <AlbumSection/>
-
-          <article>
-            <h3>Meliora (2015)</h3>
-            <p>This album was mostly on repeat for me, especially their songs Mummy dust, He is, Cirice, From pinnacle to the pit</p>
-            <a href="https://www.youtube.com/watch?v=YOUR_YOUTUBE_LINK_HERE" target="_blank" rel="noreferrer">
-                <img src="/images/Meli.JPG" alt="Mummy Dust" className="pfp-img" />
-            </a>
-            <a href="https://youtu.be/kC_bFsGUVyg?si=-gJ3LOQ2m5ci_jkF" target="_blank" rel="noreferrer">
-                <img src="/images/Meli.JPG" alt="He is" className="pfp-img" />
-            </a>
-            <a href="https://youtu.be/KOrXKiSy8ZY?si=a81UAKpUwxo4dA9E" target="_blank" rel="noreferrer">
-                <img src="/images/Meli.JPG" alt="Cirice" className="pfp-img" />
-            </a>
-          </article>
-        </section>
+        <AlbumSection />
       </main>
 
       {/* FOOTER */}
       <footer>
-        <p>&copy; 2026 Final Web | Created for Ghost Band Tribute, all credits go to the respective owners</p>
+        <p>&copy; 2026 Midterm Web Project | Created for Ghost Band Tribute, all credits go to the respective owners</p>
       </footer>
     </div>
   );
