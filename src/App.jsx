@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './stylecherry.css';
 import Navbar from './components/Navbar';
 import GhoulCard from './components/GhoulCard';
+import PapaFocus from './components/PapaFocus';
+import AlbumSection from './components/AlbumSection';
 
 
 const ghoulsData = [
@@ -154,36 +156,10 @@ function App() {
         </section>
 
         {/* PAPA FOCUS SECTION */}
-        <section id="vocalist">
-          <h2>Papa EMERITUS or COPIA</h2>
-          <p>The frontman for Ghost, many papas appear as the band changes through phases from Opus Eponymous onto Skeletá...</p>
-          <p>Though in truth all papas are played by the same person, who is named Tobias Forge...</p>
-
-          <h3>List of Papas:</h3>
-          <ul>
-            <li>Papa Emeritus I (2008–2012)</li>
-            <li>Papa Emeritus II (2012–2015)</li>
-            <li>Papa Emeritus III (2015–2020)</li>
-            <li>Cardinal Copia / Papa Emeritus IV (2020–Present)</li>
-          </ul> 
-        </section> 
+        <PapaFocus/>
 
         {/* FAVORITE ALBUMS SECTION */}
-        <section id="albums">
-          <h2>Favorite Albums</h2>
-          <article>
-            <h3>Seven Inches of Satanic Panic</h3>
-            <p>This album contained two of the iconic song tracks as I think this is where they began
-               to become more famous as their cover on Mary on a cross was a hit to many.
-            </p>
-            <a href="https://youtu.be/kC_bFsGUVyg?si=-gJ3LOQ2m5ci_jkF" target="_blank" rel="noreferrer">
-                <img src="/images/seven.jpg" alt="Mary On A cross" className="pfp-img" />
-            </a>
-
-            <a href="https://www.youtube.com/watch?v=YOUR_YOUTUBE_LINK_HERE" target="_blank" rel="noreferrer">
-                <img src="/images/seven.jpg" alt="Kiss the Go-Goat" className="pfp-img" />
-            </a>
-          </article>
+        <AlbumSection/>
 
           <article>
             <h3>Meliora (2015)</h3>
