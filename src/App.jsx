@@ -8,13 +8,13 @@ import AlbumSection from './components/AlbumSection';
 const ghoulsData = [
   { name: "Sodo / Dewdrop", role: "A feisty ghoul, and their lead guitarist.", image: "/images/sodobb.jpg", customClass: "Sodo" },
   { name: "Swiss / Multi-Ghoul", role: "A freaky ghoul often seen to smile really wide to scare fans, that knows how to play multiple instruments, that's why he's called multi-ghoul.", image: "/images/swiss.jpg", customClass: "Swiss" },
-  { name: "Aether", role: "A ghoul who often duels with Sodo, and their rhythm guitarist.", image: "/images/banana.jpg", customClass: "Aether" },
-  { name: "Rain / Water", role: "A ghoul who fell off the stage during one of his earlier performances, known as grandmaster ass wobbler. Played as the bassist.", image: "/images/rain.jpg", customClass: "Rain" },
-  { name: "Mountain / Earth", role: "A ghoul that's really tall, he plays drums, would often throw his drum sticks to the crowd.", image: "/images/mount.jpg", customClass: "Mountain" },
-  { name: "Cumulus / Air", role: "The Lioness, mainly does backup vocals and plays the keyboard.", image: "/images/cumu.jpg", customClass: "Cumulus" },
-  { name: "Cirrus / Air", role: "A ghoul known for her keytar solo in Mummy Dust and for affectionately interacting with those around her.", image: "/images/cirrus.jpg", customClass: "Cirrus" },
+  { name: "Aether (Rhythm Guitarist)", role: "A ghoul who often duels with Sodo, and their rhythm guitarist.", image: "/images/banana.jpg", customClass: "Aether" },
+  { name: "Rain / Water (Bassist)", role: "A ghoul who fell off the stage during one of his earlier performances, known as grandmaster ass wobbler. ", image: "/images/rain.jpg", customClass: "Rain" },
+  { name: "Mountain / Earth(Drummer)", role: "A ghoul that's really tall when with the other members he towers over them, would often throw his drum sticks to the crowd.", image: "/images/mount.jpg", customClass: "Mountain" },
+  { name: "Cumulus / Air (Keyboardist)", role: "The Lioness, mainly does backup vocals and plays the keyboard.", image: "/images/cumu.jpg", customClass: "Cumulus" },
+  { name: "Cirrus / Air(Keyboardist)", role: "A ghoul known for her keytar solo in Mummy Dust and for affectionately interacting with those around her.", image: "/images/cirrus.jpg", customClass: "Cirrus" },
   { name: "Aurora / Light", role: "A ghoul that likes to dance around with Swiss/Multi-Ghoul. Maintained the secondary keyboards.", image: "/images/fly.jpg", customClass: "Aurora" },
-  { name: "Sunshine / Light", role: "A ghoul notably more chaotic and risqué, plays the tambourine and shaker, also likes to wear her jacket more than the other ghoulletes who wear capes.", image: "/images/sun.jpg", customClass: "Sunshine" }
+  { name: "Sunshine / Light(tambourine and shaker)", role: "A ghoul notably more chaotic and risqué, also likes to wear her jacket more than the other ghoulletes who wear capes.", image: "/images/sun.jpg", customClass: "Sunshine" }
 ];
 
 function App() {
