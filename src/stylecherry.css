@@ -225,6 +225,8 @@ blockquote {
     background: #282828;
     border: 1px solid #3a3a3a;
     border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
 }
 
 .card-image {
@@ -344,6 +346,13 @@ blockquote {
 
 .pfp-img:hover {
     transform: scale(1.08);
+}
+
+/* Hover effect: slight lift and glow */
+.ghoul-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3); /* Gold glow */
+  border-color: #d4af37;
 }
 
 /* end section q */
