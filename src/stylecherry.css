@@ -623,14 +623,14 @@ footer p {
   animation: modalPop 0.3s ease-out;
 }
 
-/* CLOSE BUTTON */
+/* CLOSE BUTTON */                     
 .modal-close-btn {
   position: absolute;
   top: 12px;
   right: 16px;
   background: transparent;
   border: none;
-  color: #d4af37;
+  color: #691a0c;
   font-size: 1.8rem;
   font-weight: bold;
   cursor: pointer;
