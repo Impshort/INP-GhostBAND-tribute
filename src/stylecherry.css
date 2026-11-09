@@ -593,3 +593,62 @@ footer p {
         height: 240px;
     }
 }
+
+/* POP-UP MODAL OVERLAY */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85); /* Dark semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Float on top of all page elements */
+  backdrop-filter: blur(5px);
+}
+
+/* POP-UP CARD */
+.modal-card {
+  background: #111111;
+  border: 2px solid #11831b; /* Theme gold border */
+  border-radius: 12px;
+  padding: 2.5rem 2rem 2rem 2rem;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+  position: relative;
+  text-align: center;
+  animation: modalPop 0.3s ease-out;
+}
+
+/* CLOSE BUTTON */
+.modal-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: #d4af37;
+  font-size: 1.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modal-close-btn:hover {
+  color: #ffffff;
+}
+
+/* POP-IN ANIMATION */
+@keyframes modalPop {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
