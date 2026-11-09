@@ -4,13 +4,14 @@ import Navbar from './components/Navbar';
 import GhoulCard from './components/GhoulCard';
 import PapaFocus from './components/PapaFocus';
 import AlbumSection from './components/AlbumSection';
+import BandApiInfo from './components/BandApiInfo';
 
 const ghoulsData = [
   { name: "Sodo / Dewdrop (Main Lead)", 
-    role: "A feisty ghoul. Famous for playing the iconic solo (). ", 
+    role: "A feisty ghoul. Famous for playing the iconic solo ().", 
     image: "/images/sodobb.jpg", customClass: "Sodo" },
 
-  { name: "Swiss  (Multi-Ghoul)", 
+  { name: "Swiss (Multi-Ghoul)", 
     role: "Freakiest Ghoul, often seen to smiling at the audience, plays multiple intstrument.", 
     image: "/images/swiss.jpg", customClass: "Swiss" },
 
@@ -27,12 +28,12 @@ const ghoulsData = [
     image: "/images/mount.jpg", customClass: "Mountain" },
 
   { name: "Cumulus / Air (Keytar)", 
-    role: "The Lioness, mainly does backup vocals and plays the keyboard .", 
+    role: "The Lioness, mainly does backup vocals and plays the keyboard.", 
     image: "/images/cumu.jpg", customClass: "Cumulus" },
 
-  { name: "Cirrus / Air (Keytar)",
-     role: "A ghoul known for her keytar solo in Mummy Dust and for affectionately interacting with those around her.", 
-     image: "/images/cirrus.jpg", customClass: "Cirrus" },
+  { name: "Cirrus / Air (Keytar)", 
+    role: "A ghoul known for her keytar solo in Mummy Dust and for affectionately interacting with those around her.", 
+    image: "/images/cirrus.jpg", customClass: "Cirrus" },
 
   { name: "Aurora / Light (Vocals)", 
     role: "Jolly little ghoul aint she. Dances around the stage but mostly near swiss.", 
@@ -219,6 +220,9 @@ function App() {
             ))}
           </div>
         </section>
+
+        {/* LIVE API METADATA INTEGRATION */}
+        <BandApiInfo />
 
         {/* PAPA FOCUS SECTION */}
         <PapaFocus />
