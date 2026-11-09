@@ -27,7 +27,6 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [hasVisited, setHasVisited] = useState(false);
 
-  // Check localStorage on component load
   useEffect(() => {
     const visited = localStorage.getItem('ghostRitualVisited');
     if (visited) {
@@ -49,7 +48,6 @@ function App() {
     setVisitorName(finalName);
     setBandSuggestion(finalSuggestion);
 
-    // Store visitor session in localStorage so it doesn't pop up on refresh
     localStorage.setItem('ghostRitualVisited', 'true');
     localStorage.setItem('ghostVisitorName', finalName);
     localStorage.setItem('ghostBandSuggestion', finalSuggestion);
@@ -171,7 +169,7 @@ function App() {
             <tbody>
               <tr>
                 <td>Prequelle (2018–2020)</td>
-                <td>Infestissumam (2013–2015)</td>
+                <td>Impera (2020–2025)</td>
                 <td>Skeletá (2025–Present)</td>
               </tr>
             </tbody>
