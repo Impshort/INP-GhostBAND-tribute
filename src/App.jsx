@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './stylecherry.css';
 import Navbar from './components/Navbar';
 import GhoulCard from './components/GhoulCard';
@@ -6,15 +6,15 @@ import PapaFocus from './components/PapaFocus';
 import AlbumSection from './components/AlbumSection';
 
 const ghoulsData = [
-  { name: "Sodo / Dewdrop(Main Lead)", role: "A feisty ghoul, and their lead guitarist.", image: "/images/sodobb.jpg", customClass: "Sodo" },
+  { name: "Sodo / Dewdrop", role: "A feisty ghoul, and their lead guitarist.", image: "/images/sodobb.jpg", customClass: "Sodo" },
   { name: "Swiss / Multi-Ghoul", role: "A freaky ghoul often seen to smile really wide to scare fans, that knows how to play multiple instruments, that's why he's called multi-ghoul.", image: "/images/swiss.jpg", customClass: "Swiss" },
-  { name: "Aether (Rhythm Guitarist)", role: "A ghoul who often duels with Sodo, and their rhythm guitarist.", image: "/images/banana.jpg", customClass: "Aether" },
-  { name: "Rain / Water (Bassist)", role: "A ghoul who fell off the stage during one of his earlier performances, known as grandmaster ass wobbler. ", image: "/images/rain.jpg", customClass: "Rain" },
-  { name: "Mountain / Earth(Drummer)", role: "A ghoul that's really tall when with the other members he towers over them, would often throw his drum sticks to the crowd.", image: "/images/mount.jpg", customClass: "Mountain" },
-  { name: "Cumulus / Air (Keyboardist)", role: "The Lioness, mainly does backup vocals and plays the keyboard.", image: "/images/cumu.jpg", customClass: "Cumulus" },
-  { name: "Cirrus / Air(Keyboardist)", role: "A ghoul known for her keytar solo in Mummy Dust and for affectionately interacting with those around her.", image: "/images/cirrus.jpg", customClass: "Cirrus" },
+  { name: "Aether", role: "A ghoul who often duels with Sodo, and their rhythm guitarist.", image: "/images/banana.jpg", customClass: "Aether" },
+  { name: "Rain / Water", role: "A ghoul who fell off the stage during one of his earlier performances, known as grandmaster ass wobbler. Played as the bassist.", image: "/images/rain.jpg", customClass: "Rain" },
+  { name: "Mountain / Earth", role: "A ghoul that's really tall, he plays drums, would often throw his drum sticks to the crowd.", image: "/images/mount.jpg", customClass: "Mountain" },
+  { name: "Cumulus / Air", role: "The Lioness, mainly does backup vocals and plays the keyboard.", image: "/images/cumu.jpg", customClass: "Cumulus" },
+  { name: "Cirrus / Air", role: "A ghoul known for her keytar solo in Mummy Dust and for affectionately interacting with those around her.", image: "/images/cirrus.jpg", customClass: "Cirrus" },
   { name: "Aurora / Light", role: "A ghoul that likes to dance around with Swiss/Multi-Ghoul. Maintained the secondary keyboards.", image: "/images/fly.jpg", customClass: "Aurora" },
-  { name: "Sunshine / Light(tambourine and shaker)", role: "A ghoul notably more chaotic and risqué, also likes to wear her jacket more than the other ghoulletes who wear capes.", image: "/images/sun.jpg", customClass: "Sunshine" }
+  { name: "Sunshine / Light", role: "A ghoul notably more chaotic and risqué, plays the tambourine and shaker, also likes to wear her jacket more than the other ghoulletes who wear capes.", image: "/images/sun.jpg", customClass: "Sunshine" }
 ];
 
 function App() {
@@ -23,17 +23,45 @@ function App() {
   
   const [nameInput, setNameInput] = useState('');
   const [suggestionInput, setSuggestionInput] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  
+  const [showModal, setShowModal] = useState(false);
+  const [hasVisited, setHasVisited] = useState(false);
+
+  // Check localStorage on component load
+  useEffect(() => {
+    const visited = localStorage.getItem('ghostRitualVisited');
+    if (visited) {
+      setHasVisited(true);
+      const savedName = localStorage.getItem('ghostVisitorName');
+      const savedBand = localStorage.getItem('ghostBandSuggestion');
+      if (savedName) setVisitorName(savedName);
+      if (savedBand) setBandSuggestion(savedBand);
+    } else {
+      setShowModal(true);
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (nameInput.trim() !== '') {
-      setVisitorName(nameInput.trim());
-    }
-    if (suggestionInput.trim() !== '') {
-      setBandSuggestion(suggestionInput.trim());
-    }
-    setIsSubmitted(true);
+    const finalName = nameInput.trim() !== '' ? nameInput.trim() : 'Fellow Ghoul';
+    const finalSuggestion = suggestionInput.trim();
+
+    setVisitorName(finalName);
+    setBandSuggestion(finalSuggestion);
+
+    // Store visitor session in localStorage so it doesn't pop up on refresh
+    localStorage.setItem('ghostRitualVisited', 'true');
+    localStorage.setItem('ghostVisitorName', finalName);
+    localStorage.setItem('ghostBandSuggestion', finalSuggestion);
+
+    setShowModal(false);
+    setHasVisited(true);
+  };
+
+  const handleClose = () => {
+    localStorage.setItem('ghostRitualVisited', 'true');
+    setShowModal(false);
+    setHasVisited(true);
   };
 
   return (
@@ -42,39 +70,53 @@ function App() {
       <header className="Ht" id="tribut">
         <h1>GHOST TRIBUTE</h1>
         <p>Just wanted to introduce the amazing world of Ghost!</p>
+        
+        {hasVisited && (
+          <div style={{ marginTop: '0.8rem', color: '#d4af37' }}>
+            <p><strong>Welcome back, {visitorName}! 🤘</strong></p>
+            {bandSuggestion && (
+              <p style={{ fontSize: '0.9rem', fontStyle: 'italic', margin: 0 }}>
+                Your recommendation: {bandSuggestion}
+              </p>
+            )}
+          </div>
+        )}
+      </header>
 
-        {!isSubmitted ? (
-          <form onSubmit={handleSubmit} style={{ marginTop: '1.2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.6rem' }}>
-            <p style={{ color: '#d4af37', fontSize: '0.95rem', margin: 0 }}>Join the ritual! Tell us your name & favorite band recommendation:</p>
-            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+      {/* POP-UP MODAL CARD */}
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-card">
+            <button className="modal-close-btn" onClick={handleClose}>&times;</button>
+            <h2>Join the Ritual! 🤘</h2>
+            <p style={{ color: '#d4af37', marginBottom: '1.2rem' }}>
+              Tell us your name & favorite band recommendation before entering:
+            </p>
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
               <input 
                 type="text" 
                 placeholder="Your Name (e.g. Little Ghoul)" 
                 value={nameInput}
                 onChange={(e) => setNameInput(e.target.value)}
-                style={{ padding: '0.4rem 0.8rem', borderRadius: '4px', border: '1px solid #444', background: '#222', color: '#fff' }}
+                style={{ padding: '0.6rem 0.8rem', borderRadius: '4px', border: '1px solid #444', background: '#222', color: '#fff' }}
               />
               <input 
                 type="text" 
                 placeholder="Other band suggestion" 
                 value={suggestionInput}
                 onChange={(e) => setSuggestionInput(e.target.value)}
-                style={{ padding: '0.4rem 0.8rem', borderRadius: '4px', border: '1px solid #444', background: '#222', color: '#fff' }}
+                style={{ padding: '0.6rem 0.8rem', borderRadius: '4px', border: '1px solid #444', background: '#222', color: '#fff' }}
               />
-              <button type="submit" style={{ padding: '0.4rem 1rem', borderRadius: '4px', background: '#d4af37', color: '#000', fontWeight: 'bold', cursor: 'pointer', border: 'none' }}>
-                Enter
+              <button 
+                type="submit" 
+                style={{ padding: '0.6rem 1rem', borderRadius: '4px', background: '#d4af37', color: '#000', fontWeight: 'bold', cursor: 'pointer', border: 'none', marginTop: '0.4rem' }}
+              >
+                Enter Ritual
               </button>
-            </div>
-          </form>
-        ) : (
-          <div style={{ marginTop: '1.0rem', color: '#d4af37' }}>
-            <p><strong>Welcome, {visitorName}!</strong></p>
-            {bandSuggestion && (
-              <p><em>Thanks for suggesting: <strong>{bandSuggestion}</strong>! We'll check them out! 🤘</em></p>
-            )}
+            </form>
           </div>
-        )}
-      </header>
+        </div>
+      )}
 
       {/* NAVIGATION */}
       <Navbar />
@@ -129,7 +171,7 @@ function App() {
             <tbody>
               <tr>
                 <td>Prequelle (2018–2020)</td>
-                <td>Impera (2020–2025)</td>
+                <td>Infestissumam (2013–2015)</td>
                 <td>Skeletá (2025–Present)</td>
               </tr>
             </tbody>
