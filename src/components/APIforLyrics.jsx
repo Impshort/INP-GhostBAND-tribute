@@ -15,33 +15,33 @@ function LyricsSearch() {
     setError(null);
     setSelectedLyrics(null);
 
-    // LRCLIB API endpoint for lyrics search filtered by artist and song title
     fetch(`https://lrclib.net/api/search?artist_name=Ghost&track_name=${encodeURIComponent(query.trim())}`, {
-  headers: {
+      headers: {
     'Lrclib-Client': 'GhostTributeApp v1.0 (https://github.com/capstone)'
-      }
-      })  
-      .then((res) => {
-        if (!res.ok) throw new Error('Failed to fetch lyrics.');
-        return res.json();
-      })
-      .then((data) => {
-        setResults(data);
-        if (data.length === 0) {
-          setError('No lyrics found for this Ghost song. Try another title like "Square Hammer" or "Mary On A Cross".');
-        }
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error('LRCLIB Fetch Error:', err);
-        setError('Error fetching lyrics. Please check your connection.');
-        setLoading(false);
-      });
-  };
+    }
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error('Failed to fetch lyrics.');
+      return res.json();
+    })
+    .then((data) => {
+    // Filter out remixes/compilations to keep ONLY tracks by "Ghost"
+      const officialGhostTracks = data.filter(track => 
+      track.artistName.toLowerCase() === 'ghost'
+    );
+
+    setResults(officialGhostTracks);
+    if (officialGhostTracks.length === 0) {
+      setError('No official Ghost band lyrics found for this song title.');
+    }
+    setLoading(false);
+    })
+  }
 
   return (
     <section id="lyrics-search" style={{ margin: '2.5rem 0', padding: '1.5rem', background: '#111', border: '1px solid #d4af37', borderRadius: '8px' }}>
       <h2 style={{ color: '#d4af37', marginTop: 0 }}>Search for Lyrics related to the GHOST</h2>
+
 
       <form onSubmit={handleSearch} style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.5rem' }}>
         <input 
