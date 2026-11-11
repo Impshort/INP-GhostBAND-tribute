@@ -208,7 +208,7 @@ blockquote {
 
 /* HEADER BACKGROUND & LAYOUT FIX */
 .Ht {
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85)), url('src/public/images/ghost band.jpg') no-repeat center center/cover;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85)), url('public/images/ghost band.jpg') no-repeat center center/cover;
   padding: 3rem 1rem;
   text-align: center;
   border-bottom: 2px solid #d4af37;
