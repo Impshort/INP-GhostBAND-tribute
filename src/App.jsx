@@ -3,7 +3,7 @@ import './stylecherry.css';
 import Navbar from './components/Navbar';
 import GhoulCard from './components/GhoulCard';
 import PapaFocus from './components/PapaFocus';
-
+import APIforLyrics from './components/APIforLyrics';
 import AlbumSection from './components/AlbumSection';
 
 
