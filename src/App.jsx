@@ -3,7 +3,9 @@ import './stylecherry.css';
 import Navbar from './components/Navbar';
 import GhoulCard from './components/GhoulCard';
 import PapaFocus from './components/PapaFocus';
+
 import AlbumSection from './components/AlbumSection';
+
 
 
 const ghoulsData = [
