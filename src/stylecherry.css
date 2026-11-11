@@ -206,6 +206,28 @@ blockquote {
     border-radius: 6px;
 }
 
+/* HEADER BACKGROUND & LAYOUT FIX */
+.Ht {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85)), url('src/public/images/ghost band.jpg') no-repeat center center/cover;
+  padding: 3rem 1rem;
+  text-align: center;
+  border-bottom: 2px solid #d4af37;
+}
+
+.Ht h1 {
+  color: #d4af37; /* Changes green title to theme gold */
+  letter-spacing: 2px;
+}
+
+/* WELCOME CONTAINER ALIGNMENT */
+.Ht div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 1rem !important;
+}
+
 /* ghouls settings*/
 
 .ghouls-grid {
