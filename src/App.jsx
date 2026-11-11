@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import GhoulCard from './components/GhoulCard';
 import PapaFocus from './components/PapaFocus';
 import AlbumSection from './components/AlbumSection';
-import BandApiInfo from './components/BandApiInfo';
+
 
 const ghoulsData = [
   { name: "Sodo / Dewdrop (Main Lead)", 
@@ -214,10 +214,6 @@ function App() {
             ))}
           </div>
         </section>
-
-        {/* LIVE API METADATA INTEGRATION */}
-        <BandApiInfo />
-
         {/* PAPA FOCUS SECTION */}
         <PapaFocus />
 
