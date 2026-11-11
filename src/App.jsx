@@ -152,14 +152,8 @@ function App() {
         <section id="lore" className="LORE">
           <h2 id="BRILORE">Briefest Intro About Them</h2>
           <p id="FLore">
-            Ghost is a Swedish heavy metal band known for their theatrical stage presence and elaborate backstory, 
-            often referred to as "lore." The band portrays themselves as a satanic clergy 
-            with a frontman known as the "Papa Emeritus," who is essentially the leader of the band.
-            <br />
-            <strong>Papa Emeritus/ Copia:</strong> The character of Papa Emeritus/copia serves as the lead singer and mostly the one who interacts with the fans.
-            <br />
-            <strong>Nameless Ghouls:</strong> The other members of the band are known as Nameless Ghouls, who wear identical masks and costumes, 
-            in which changes per ERA of the Ghost band. They are mainly the ones who play the instruments and provide backing vocals.
+            Ghost is a swedish rock band known for their theatrical stage presence with a elaborate backstory.
+             A satanic clergy with a frontman known as "Papa Emiritus". 
           </p>
           <blockquote id="LoreSum">
             "It's mostly the adventures of the Ministry, a politicized, gently corrupt, Satan-loving satire of the Catholic church. 
