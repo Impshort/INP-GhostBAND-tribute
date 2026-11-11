@@ -199,6 +199,8 @@ function App() {
           </table>
         </section>
 
+        <APIforLyrics/>
+
         {/* GHOULS SECTION */}
         <section id="ghouls" className="NGHOULD">
           <h2>The Nameless Ghouls</h2>
