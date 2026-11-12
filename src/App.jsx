@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './stylecherry.css';
 import Navbar from './components/Navbar';
 import GhoulCard from './components/GhoulCard';
 import PapaFocus from './components/PapaFocus';
-import APIforLyrics from './components/APIforLyrics';
+import LyricsSearch from './components/APIforLyrics';
 import AlbumSection from './components/AlbumSection';
 
 
@@ -47,31 +47,24 @@ const ghoulsData = [
 ];
 
 function App() {
-  const [visitorName, setVisitorName] = useState('Fellow Ghoul');
-  const [bandSuggestion, setBandSuggestion] = useState('');
-  
+  const [visitorName, setVisitorName] = useState(
+    () => localStorage.getItem('ghostVisitorName') || 'Fellow Ghoul'
+  );
+  const [bandSuggestion, setBandSuggestion] = useState(
+    () => localStorage.getItem('ghostBandSuggestion') || ''
+  );
   const [nameInput, setNameInput] = useState('');
   const [suggestionInput, setSuggestionInput] = useState('');
-  
-  const [showModal, setShowModal] = useState(false);
-  const [hasVisited, setHasVisited] = useState(false);
+  const [hasVisited, setHasVisited] = useState(
+    () => localStorage.getItem('ghostRitualVisited') === 'true'
+  );
+  const [showModal, setShowModal] = useState(
+    () => localStorage.getItem('ghostRitualVisited') !== 'true'
+  );
 
-  useEffect(() => {
-    const visited = localStorage.getItem('ghostRitualVisited');
-    if (visited) {
-      setHasVisited(true);
-      const savedName = localStorage.getItem('ghostVisitorName');
-      const savedBand = localStorage.getItem('ghostBandSuggestion');
-      if (savedName) setVisitorName(savedName);
-      if (savedBand) setBandSuggestion(savedBand);
-    } else {
-      setShowModal(true);
-    }
-  }, []);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const finalName = nameInput.trim() !== '' ? nameInput.trim() : 'Fellow Ghoul';
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const finalName = nameInput.trim() || 'Fellow Ghoul';
     const finalSuggestion = suggestionInput.trim();
 
     setVisitorName(finalName);
@@ -99,10 +92,10 @@ function App() {
         <p>Just wanted to introduce the amazing world of Ghost!</p>
         
         {hasVisited && (
-          <div style={{ marginTop: '0.8rem', color: '#d4af37' }}>
+          <div className="visitor-welcome">
             <p><strong>Welcome back, {visitorName}! 🤘</strong></p>
             {bandSuggestion && (
-              <p style={{ fontSize: '0.9rem', fontStyle: 'italic', margin: 0 }}>
+              <p className="visitor-suggestion">
                 Your recommendation: {bandSuggestion}
               </p>
             )}
@@ -113,31 +106,42 @@ function App() {
       {/* POP-UP MODAL CARD */}
       {showModal && (
         <div className="modal-overlay">
-          <div className="modal-card">
-            <button className="modal-close-btn" onClick={handleClose}>&times;</button>
-            <h2>Join the Ritual! 🤘</h2>
-            <p style={{ color: '#d4af37', marginBottom: '1.2rem' }}>
+          <div
+            className="modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
+          >
+            <button
+              className="modal-close-btn"
+              type="button"
+              aria-label="Close dialog"
+              onClick={handleClose}
+            >
+              &times;
+            </button>
+            <h2 id="modal-title">Join the Ritual! 🤘</h2>
+            <p className="modal-description">
               Tell us your name & favorite band recommendation before entering:
             </p>
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-              <input 
-                type="text" 
-                placeholder="Your Name (e.g. Little Ghoul)" 
+            <form className="modal-form" onSubmit={handleSubmit}>
+              <input
+                className="modal-input"
+                type="text"
+                aria-label="Your name"
+                placeholder="Your Name (e.g. Little Ghoul)"
                 value={nameInput}
                 onChange={(e) => setNameInput(e.target.value)}
-                style={{ padding: '0.6rem 0.8rem', borderRadius: '4px', border: '1px solid #444', background: '#222', color: '#fff' }}
               />
-              <input 
-                type="text" 
-                placeholder="Other band suggestion" 
+              <input
+                className="modal-input"
+                type="text"
+                aria-label="Band recommendation"
+                placeholder="Other band suggestion"
                 value={suggestionInput}
                 onChange={(e) => setSuggestionInput(e.target.value)}
-                style={{ padding: '0.6rem 0.8rem', borderRadius: '4px', border: '1px solid #444', background: '#222', color: '#fff' }}
               />
-              <button 
-                type="submit" 
-                style={{ padding: '0.6rem 1rem', borderRadius: '4px', background: '#d4af37', color: '#000', fontWeight: 'bold', cursor: 'pointer', border: 'none', marginTop: '0.4rem' }}
-              >
+              <button className="modal-submit" type="submit">
                 Enter Ritual
               </button>
             </form>
@@ -199,7 +203,7 @@ function App() {
           </table>
         </section>
 
-        <APIforLyrics/>
+        <LyricsSearch />
 
         {/* GHOULS SECTION */}
         <section id="ghouls" className="NGHOULD">
