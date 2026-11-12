@@ -277,7 +277,7 @@ blockquote {
     min-height: 180px;
     object-fit: cover;
     padding: 0.25rem;
-    background: var(--color-background);
+    background: var(--color-surface);
 }
 
 .card-content {
