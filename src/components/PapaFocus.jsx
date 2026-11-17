@@ -1,19 +1,173 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+const papasData = [
+  {
+    name: "Papa Emeritus I (Primo)",
+    years: "2008–2012",
+    description: "The original elderly frontman who started it all with dark, classical Gregorian chant-infused metal vibes.",
+    images: [
+      "/images/papa1_1.jpg",
+      "/images/papa1_2.jpg"
+    ]
+  },
+  {
+    name: "Papa Emeritus II (Secondo)",
+    years: "2012–2015",
+    description: "A more charismatic and sinister figure with an iconic painted face mask, papal robes, and casual secular attire.",
+    images: [
+      "/images/papa2_1.jpg",
+      "/images/papa2_2.jpg"
+    ]
+  },
+  {
+    name: "Papa Emeritus III (Terzo)",
+    years: "2015–2020",
+    description: "The suave, younger brother who introduced theatricality, black tuxedos, and acoustic performances.",
+    images: [
+      "/images/papa3_1.jpg",
+      "/images/papa3_2.jpg"
+    ]
+  },
+  {
+    name: "Cardinal Copia / Papa Emeritus IV",
+    years: "2020–Present",
+    description: "The former Cardinal who earned his papal title through hard work, driving Ghost into stadium rock royalty.",
+    images: [
+      "/images/papa4_1.jpg",
+      "/images/papa4_2.jpg"
+    ]
+  }
+];
+
+// Individual Card Component so each Papa has their own independent arrows
+function PapaCard({ papa }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const prevImage = () => {
+    setCurrentIndex((prev) => (prev === 0 ? papa.images.length - 1 : prev - 1));
+  };
+
+  const nextImage = () => {
+    setCurrentIndex((prev) => (prev === papa.images.length - 1 ? 0 : prev + 1));
+  };
+
+  return (
+    <div 
+      style={{ 
+        background: '#111', 
+        border: '1px solid #333', 
+        borderRadius: '8px', 
+        padding: '1.2rem', 
+        textAlign: 'center',
+        boxShadow: '0 4px 10px rgba(0, 0, 0, 0.5)' 
+      }}
+    >
+      {/* IMAGE CAROUSEL CONTAINER */}
+      <div style={{ position: 'relative', width: '100%', height: '250px', marginBottom: '1rem' }}>
+        <img 
+          src={papa.images[currentIndex]} 
+          alt={`${papa.name} look ${currentIndex + 1}`} 
+          style={{ 
+            width: '100%', 
+            height: '100%', 
+            objectFit: 'cover', 
+            borderRadius: '6px', 
+            border: '1px solid #d4af37'
+          }} 
+        />
+
+        {/* LEFT ARROW */}
+        {papa.images.length > 1 && (
+          <button 
+            onClick={prevImage}
+            aria-label="Previous image"
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '8px',
+              transform: 'translateY(-50%)',
+              background: 'rgba(0, 0, 0, 0.75)',
+              color: '#d4af37',
+              border: '1px solid #d4af37',
+              borderRadius: '50%',
+              width: '32px',
+              height: '32px',
+              cursor: 'pointer',
+              fontWeight: 'bold'
+            }}
+          >
+            ‹
+          </button>
+        )}
+
+        {/* RIGHT ARROW */}
+        {papa.images.length > 1 && (
+          <button 
+            onClick={nextImage}
+            aria-label="Next image"
+            style={{
+              position: 'absolute',
+              top: '50%',
+              right: '8px',
+              transform: 'translateY(-50%)',
+              background: 'rgba(0, 0, 0, 0.75)',
+              color: '#d4af37',
+              border: '1px solid #d4af37',
+              borderRadius: '50%',
+              width: '32px',
+              height: '32px',
+              cursor: 'pointer',
+              fontWeight: 'bold'
+            }}
+          >
+            ›
+          </button>
+        )}
+
+        {/* IMAGE COUNTER BADGE (e.g. 1 / 2) */}
+        {papa.images.length > 1 && (
+          <span style={{
+            position: 'absolute',
+            bottom: '8px',
+            right: '8px',
+            background: 'rgba(0, 0, 0, 0.75)',
+            color: '#fff',
+            fontSize: '0.75rem',
+            padding: '2px 8px',
+            borderRadius: '10px'
+          }}>
+            {currentIndex + 1} / {papa.images.length}
+          </span>
+        )}
+      </div>
+
+      {/* PAPA DETAILS */}
+      <h3 style={{ color: '#d4af37', fontSize: '1.05rem', margin: '0.4rem 0' }}>{papa.name}</h3>
+      <span style={{ display: 'block', color: '#888', fontSize: '0.8rem', marginBottom: '0.6rem' }}>
+        {papa.years}
+      </span>
+      <p style={{ color: '#ccc', fontSize: '0.85rem', lineHeight: '1.4', margin: 0 }}>
+        {papa.description}
+      </p>
+    </div>
+  );
+}
 
 function PapaFocus() {
   return (
-    <section id="vocalist">
-      <h2>COPIA</h2>
-      <p>The frontman for Ghost, many papas appear as the band changes through phases from Opus Eponymous onto Skeletá...</p>
-      <p>This section highlights the different PAPA's per phases, with some funny pictures</p>
+    <section id="papas" className="PAPA-SECTION" style={{ margin: '2.5rem 0' }}>
+      <h2 style={{ color: '#d4af37', borderBottom: '1px solid #444', paddingBottom: '0.5rem' }}>
+        The Papas Era Focus
+      </h2>
+      <p style={{ color: '#ccc', marginBottom: '1.5rem' }}>
+        Use the arrows on each frontman's portrait to switch between their iconic looks:
+      </p>
 
-      <h3>List of Papas:</h3>
-      <ul>
-        <li>Papa Emeritus I (2008–2012)</li>
-        <li>Papa Emeritus II (2012–2015)</li>
-        <li>Papa Emeritus III (2015–2020)</li>
-        <li>Cardinal Copia / Papa Emeritus IV (2020–Present)</li>
-      </ul> 
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))', gap: '1.5rem' }}>
+        {papasData.map((papa, index) => (
+          <PapaCard key={index} papa={papa} />
+        ))}
+      </div>
     </section>
   );
 }
