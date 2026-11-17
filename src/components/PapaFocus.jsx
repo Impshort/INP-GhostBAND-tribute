@@ -42,7 +42,8 @@ const papasData = [
       "/images/pap/TERZO.jpg",
       "/images/pap/TE_=p.jpg",
       "/images/pap/TE_CROSSLEGGED.jpg",
-      "/images/pap/TE_TITANIC.jpg"
+      "/images/pap/TE_TITANIC.jpg",
+      "/images/pap/TE_BUG.jpg"
     ]
   },
 
@@ -55,8 +56,8 @@ const papasData = [
       "/images/pap/CO_THRUST.jpg",
       "/images/pap/CO_GAY.jpg",
       "/images/pap/CO_LEG.jpg",
-      "/images/pap/CO_HAIR.jpg",
-      "/images/pap/TE_BUG.jpg"
+      "/images/pap/CO_HAIR.jpg"
+      
     ]
   },
 
