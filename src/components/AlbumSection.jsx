@@ -3,7 +3,7 @@ import React from 'react';
 function AlbumSection() {
   return (
     <section id="albums">
-      <h2>Favorite Albums</h2>
+      <h2>MY FAV ALBUMS</h2>
       <article>
         <h3>Seven Inches of Satanic Panic</h3>
         <p>This album contained two of the iconic song tracks as I think this is where they began
