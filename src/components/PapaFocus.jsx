@@ -2,39 +2,69 @@ import React, { useState } from 'react';
 
 const papasData = [
   {
-    name: "Papa Emeritus I (Primo)",
+    name: "Papa Nihil",
     years: "2008–2012",
     description: "The original elderly frontman who started it all with dark, classical Gregorian chant-infused metal vibes.",
     images: [
-      "/images/papa1_1.jpg",
-      "/images/papa1_2.jpg"
+      "/images/pap/NIHIL.jpg",
+      "/images/pap/NI_F.jpg",
+      "/images/pap/NI_shda.jpg",
+      "/images/pap/NI_poopi.jpg",
+      "/images/pap/NI_trum.jpg"
     ]
   },
   {
-    name: "Papa Emeritus II (Secondo)",
+    name: "PRIMO",
     years: "2012–2015",
     description: "A more charismatic and sinister figure with an iconic painted face mask, papal robes, and casual secular attire.",
     images: [
-      "/images/papa2_1.jpg",
-      "/images/papa2_2.jpg"
-    ]
+      "/images/primo.jpg",
+      "/images/PR_FIRE.jpg", ]
   },
   {
-    name: "Papa Emeritus III (Terzo)",
+    name: "SECONDO",
     years: "2015–2020",
     description: "The suave, younger brother who introduced theatricality, black tuxedos, and acoustic performances.",
     images: [
-      "/images/papa3_1.jpg",
-      "/images/papa3_2.jpg"
+      "/images/SECONDO",
+      "/images/SE_DOG.jpg",
+      "/images/SE_shade.jpg"
     ]
   },
   {
-    name: "Cardinal Copia / Papa Emeritus IV",
+    name: "TERZO",
     years: "2020–Present",
     description: "The former Cardinal who earned his papal title through hard work, driving Ghost into stadium rock royalty.",
     images: [
-      "/images/papa4_1.jpg",
-      "/images/papa4_2.jpg"
+      "/images/TERZO.jpg",
+      "/images/TE_=p.jpg",
+      "/images/TE_CROSSLEGGED.jpg",
+      "/images/TE_TITANIC.jpg",
+      "/images/TE_BUG.jpg"
+    ]
+  },
+
+  {
+    name: "COPIA",
+    years: "2020–Present",
+    description: "The former Cardinal who earned his papal title through hard work, driving Ghost into stadium rock royalty.",
+    images: [
+      "/images/COPIA.jpg",
+      "/images/CO_THRUST.jpg",
+      "/images/CO_GAY.jpg",
+      "/images/CO_LEG.jpg",
+      "/images/CO_HAIR.jpg"
+    ]
+  },
+
+  {
+    name: "PERPETUA",
+    years: "2020–Present",
+    description: "The former Cardinal who earned his papal title through hard work, driving Ghost into stadium rock royalty.",
+    images: [
+      "/images/PERPETUA.jpg",
+      "/images/PE_EYE.jpg",
+      "/images/PE_RUN.jpg"
     ]
   }
 ];
