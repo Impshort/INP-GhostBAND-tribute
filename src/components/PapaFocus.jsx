@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 
 const papasData = [
+
   {
+
     name: "Papa Nihil",
     years: "2008–2012",
     description: "The original elderly frontman who started it all with dark, classical Gregorian chant-infused metal vibes.",
@@ -66,7 +68,11 @@ const papasData = [
       "/images/PE_EYE.jpg",
       "/images/PE_RUN.jpg"
     ]
-  }
+  },
+
+  <p id="FLore">
+            FUN FACT TOBIAS FORGE ACTUALLY WEARS A MASK WHILE ON STAGE PERFORMING. 
+          </p>
 ];
 
 // Individual Card Component so each Papa has their own independent arrows
