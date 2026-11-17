@@ -7,7 +7,7 @@ const phases = [
     years: '2008–2012',
     cover: '/images/Oe.jpg',
     track: 'Ritual',
-    audio: '/audio/phases/opus-eponymous-ritual.mp3'
+    audio: '/audio/phases/Ritual.mp3'
   },
   {
     id: 'infestissumam',
@@ -15,15 +15,15 @@ const phases = [
     years: '2013–2015',
     cover: '/images/Infes.jpg',
     track: 'Year Zero',
-    audio: '/audio/phases/infestissumam-year-zero.mp3'
+    audio: '/audio/phases/yearzero.mp3'
   },
   {
     id: 'meliora',
     album: 'Meliora',
     years: '2015–2018',
     cover: '/images/Meli.JPG',
-    track: 'Cirice',
-    audio: '/audio/phases/meliora-cirice.mp3'
+    track: 'Mummy Dust',
+    audio: '/audio/phases/mummydust.mp3'
   },
   {
     id: 'prequelle',
@@ -31,7 +31,7 @@ const phases = [
     years: '2018–2020',
     cover: '/images/preq.jpg',
     track: 'Dance Macabre',
-    audio: '/audio/phases/prequelle-dance-macabre.mp3'
+    audio: '/audio/phases/dance_macabre.mp3'
   },
   {
     id: 'impera',
@@ -39,7 +39,7 @@ const phases = [
     years: '2020–2025',
     cover: '/images/imp.jpg',
     track: 'Call Me Little Sunshine',
-    audio: '/audio/phases/impera-call-me-little-sunshine.mp3'
+    audio: '/audio/phases/callme-littlesunshine.mp3'
   },
   {
     id: 'skeleta',
@@ -47,7 +47,7 @@ const phases = [
     years: '2025–Present',
     cover: '/images/skele.png',
     track: 'Satanized',
-    audio: '/audio/phases/skeleta-satanized.mp3'
+    audio: '/audio/phases/satanized.mp3'
   }
 ];
 
