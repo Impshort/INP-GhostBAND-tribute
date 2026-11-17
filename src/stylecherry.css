@@ -174,57 +174,94 @@ blockquote {
     overflow: hidden;
 }
 
-#phases table {
-    width: 100%;
-    margin: 0;
-    border: 0;
-    background: transparent;
-}
-
-#phases thead,
-#phases tbody {
-    display: block;
-    width: 100%;
-}
-
-#phases tr {
+.phase-grid {
     display: grid;
     grid-template-columns: 1fr;
-    width: 100%;
-    margin-bottom: 0.75rem;
-    border: 1px solid var(--color-border);
+    gap: 1rem;
+}
+
+.phase-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
     background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
 }
 
-#phases th,
-#phases td {
-    display: block;
+.phase-cover {
     width: 100%;
-    border: 0;
-    border-bottom: 1px solid var(--color-border);
+    height: clamp(200px, 30vw, 280px);
+    object-fit: cover;
 }
 
-#phases tr > *:last-child {
-    border-bottom: 0;
+.phase-card-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    padding: 1rem;
 }
 
-#phases th {
-    padding: 0.75rem;
-}
-
-#phases td {
-    padding: 0.8rem;
-    color: var(--color-text);
-    font-size: 1rem;
+.phase-years {
+    margin: 0;
+    color: var(--color-accent);
+    font-size: 0.85rem;
     font-weight: bold;
 }
 
-#phases table img {
-    width: min(100%, 220px);
-    aspect-ratio: 1 / 1;
-    margin: 0 auto;
-    object-fit: cover;
-    border-radius: 6px;
+.phase-card h3 {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 1.2rem;
+}
+
+.phase-track {
+    margin: 0.25rem 0 0.75rem;
+    font-size: 0.95rem;
+}
+
+.phase-file-name {
+    margin: 0 0 0.75rem;
+    color: var(--color-accent);
+    font-size: 0.8rem;
+    overflow-wrap: anywhere;
+}
+
+.phase-play-button {
+    width: 100%;
+    margin-top: auto;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--color-accent);
+    border-radius: 5px;
+    background: var(--color-accent);
+    color: var(--color-background);
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.phase-play-button:hover,
+.phase-play-button:focus-visible {
+    background: transparent;
+    color: var(--color-text);
+}
+
+.phase-play-button:focus-visible {
+    outline: 2px solid var(--color-text);
+    outline-offset: 2px;
+}
+
+.phase-audio-error {
+    margin: 0.5rem 0 0;
+    color: #ffb4a9;
+    font-size: 0.85rem;
+}
+
+#phases audio {
+    display: none;
 }
 
 /* HEADER BACKGROUND & LAYOUT*/
@@ -473,21 +510,8 @@ footer p {
         font-size: 1.05rem;
     }
 
-    #phases tr {
+    .phase-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    #phases tr > * {
-        border-right: 1px solid var(--color-border);
-        border-bottom: 0;
-    }
-
-    #phases tr > *:nth-child(2n) {
-        border-right: 0;
-    }
-
-    #phases table img {
-        width: min(100%, 190px);
     }
 
     
@@ -570,21 +594,8 @@ footer p {
         font-size: 1.15rem;
     }
 
-    #phases tr {
-        display: grid;
+    .phase-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
-        margin-bottom: 0;
-        border: 0;
-    }
-
-    #phases th,
-    #phases td {
-        border: 1px solid var(--color-border);
-    }
-
-    #phases table img {
-        width: 200px;
-        height: 200px;
     }
 
 

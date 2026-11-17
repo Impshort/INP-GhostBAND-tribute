@@ -70,7 +70,7 @@ function LyricsSearch() {
           className="lyrics-search-input"
           type="text"
           aria-label="Song title"
-          placeholder="Enter a Ghost song title (e.g., Mary on a Cross)"
+          placeholder="Enter a Ghost song title (e.g., Dance Macabre)"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
