@@ -3,7 +3,7 @@ const tabs = [
   { id: 'phases', label: 'Phases & Lyrics' },
   { id: 'ghouls', label: 'Nameless Ghouls' },
   { id: 'papas', label: 'Papa Focus' },
-  { id: 'albums', label: 'Favorite Albums' }
+  { id: 'albums', label: 'MY FAV ALBUMS' }
 ];
 
 function Navbar({ activeTab, onTabChange }) {
