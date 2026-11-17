@@ -23,6 +23,7 @@ function App() {
   const [showModal, setShowModal] = useState(
     () => localStorage.getItem('ghostRitualVisited') !== 'true'
   );
+  const [activeTab, setActiveTab] = useState('lore');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -112,41 +113,48 @@ function App() {
       )}
 
       {/* NAVIGATION */}
-      <Navbar />
+      <Navbar activeTab={activeTab} onTabChange={setActiveTab} />
 
       {/* MAIN CONTENT */}
       <main>
-        {/* LORE SECTION */}
-        <section id="lore" className="LORE">
-          <h2 id="BRILORE">A brief introduction about</h2>
-          <p id="FLore">
-            Ghost is a swedish rock band known for their theatrical stage presence with a elaborate backstory.
-             A satanic clergy with a frontman known as "Papa Emiritus". 
-          </p>
-          <blockquote id="LoreSum">
-            "It's mostly the adventures of the Ministry, a politicized, gently corrupt, Satan-loving satire of the Catholic church. 
-            The various 'papas', all played by Forge, change with every album cycle as various Ministry characters manipulate things and eventually kill them off, 
-            just for the next Papa to arise." - cd:nixiedust
-          </blockquote>
-        </section>
-
-        {/* PHASES SECTION */}
-        <Phase />
-
-        <LyricsSearch />
-
-        {/* GHOULS SECTION */}
-        <Ghoul />
-        {/* PAPA FOCUS SECTION */}
-        <PapaFocus />
-
-        {/* FAVORITE ALBUMS SECTION */}
-        <AlbumSection />
+        <div
+          id={`panel-${activeTab}`}
+          className="tab-panel"
+          role="tabpanel"
+          aria-labelledby={`tab-${activeTab}`}
+          tabIndex={0}
+        >
+          {activeTab === 'lore' && (
+            <section id="lore" className="LORE">
+              <h2 id="BRILORE">A brief introduction about</h2>
+              <p id="FLore">
+                Ghost is a swedish rock band known for their theatrical stage presence with a elaborate backstory.
+                A satanic clergy with a frontman known as "Papa Emiritus".
+              </p>
+              <blockquote id="LoreSum">
+                "It's mostly the adventures of the Ministry, a politicized, gently corrupt, Satan-loving satire of the Catholic church.
+                The various 'papas', all played by Forge, change with every 
+                album cycle as various Ministry characters manipulate things and 
+                eventually kill them off, just for the next Papa to arise." - cd:nixiedust
+              </blockquote>
+            </section>
+          )}
+          {activeTab === 'phases' && (
+            <>
+              <Phase />
+              <LyricsSearch />
+            </>
+          )}
+          {activeTab === 'ghouls' && <Ghoul />}
+          {activeTab === 'papas' && <PapaFocus />}
+          {activeTab === 'albums' && <AlbumSection />}
+        </div>
       </main>
 
       {/* FOOTER */}
       <footer>
-        <p>&copy; 2026 Midterm Web Project | Created for Ghost Band Tribute, all credits go to the respective owners</p>
+        <p>&copy; 2026 Midterm Web Project 
+          | Created for Ghost Band Tribute, all credits go to the respective owners. This is for the purpose of fulfilling my Project</p>
       </footer>
     </div>
   );
