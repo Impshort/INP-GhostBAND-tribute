@@ -1,15 +1,7 @@
 import { useState } from 'react';
 
-function formatDuration(seconds) {
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = String(seconds % 60).padStart(2, '0');
-
-  return `${minutes}:${remainingSeconds}`;
-}
-
 function LyricsSearch() {
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState([]);
   const [selectedLyrics, setSelectedLyrics] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -22,12 +14,11 @@ function LyricsSearch() {
 
     setLoading(true);
     setError(null);
-    setResults([]);
     setSelectedLyrics(null);
 
     try {
       const response = await fetch(
-        `https://lrclib.net/api/search?artist_name=Ghost&track_name=${encodeURIComponent(trackQuery)}`,
+        `https://lrclib.net/api/get?artist_name=Ghost&track_name=${encodeURIComponent(trackQuery)}`,
         {
           headers: {
             'Lrclib-Client': 'GhostTributeApp v1.0 (https://github.com/capstone)',
@@ -35,25 +26,27 @@ function LyricsSearch() {
         }
       );
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch lyrics.');
+      if (response.status === 404) {
+        setError(`No Ghost song found for "${trackQuery}". Try another title.`);
+        return;
       }
 
-      const tracks = await response.json();
+      if (!response.ok) {
+        throw new Error(`Lyrics search failed (${response.status}). Please try again.`);
+      }
 
-      if (!Array.isArray(tracks)) {
+      const track = await response.json();
+
+      if (!track || typeof track !== 'object' || Array.isArray(track)) {
         throw new Error('The lyrics service returned an unexpected response.');
       }
 
-      const ghostTracks = tracks.filter(
-        (track) => track?.artistName?.toLowerCase() === 'ghost'
-      );
-
-      setResults(ghostTracks);
-
-      if (ghostTracks.length === 0) {
-        setError('No official Ghost band lyrics found for this song title.');
+      if (track.artistName?.trim().toLowerCase() !== 'ghost') {
+        setError(`No Ghost song found for "${trackQuery}". Try another title.`);
+        return;
       }
+
+      setSelectedLyrics(track);
     } catch (searchError) {
       setError(
         searchError instanceof Error
@@ -69,7 +62,7 @@ function LyricsSearch() {
     <section id="lyrics-search" className="lyrics-search">
       <h2>LYRICA</h2>
       <p>
-        Search for Ghost lyrics. Other bands may have songs with the same title.
+        Search for a Ghost song by title.
       </p>
 
       <form className="lyrics-search-form" onSubmit={handleSearch}>
@@ -77,7 +70,7 @@ function LyricsSearch() {
           className="lyrics-search-input"
           type="text"
           aria-label="Song title"
-          placeholder="Enter song title (e.g., Square Hammer, Cirice)"
+          placeholder="Enter a Ghost song title (e.g., Mary on a Cross)"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
@@ -93,25 +86,6 @@ function LyricsSearch() {
       {loading && <p role="status">Searching ritual archives...</p>}
       {error && <p className="lyrics-error" role="alert">{error}</p>}
 
-      {results.length > 0 && !selectedLyrics && (
-        <div>
-          <h3>Select a match:</h3>
-          <div className="lyrics-results">
-            {results.map((track) => (
-              <button
-                className="lyrics-result-button"
-                key={track.id}
-                type="button"
-                onClick={() => setSelectedLyrics(track)}
-              >
-                <strong>{track.trackName}</strong> — <em>{track.albumName}</em>{' '}
-                ({formatDuration(track.duration)})
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
       {selectedLyrics && (
         <div className="lyrics-selected">
           <div className="lyrics-selected-header">
@@ -121,7 +95,7 @@ function LyricsSearch() {
               type="button"
               onClick={() => setSelectedLyrics(null)}
             >
-              Back to results
+              Back to search
             </button>
           </div>
           <p className="lyrics-meta">

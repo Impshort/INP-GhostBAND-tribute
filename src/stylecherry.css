@@ -764,7 +764,6 @@ footer p {
 }
 
 .lyrics-search-button,
-.lyrics-result-button,
 .lyrics-back-button {
   padding: 0.6rem 1rem;
   border: 1px solid var(--color-accent);
@@ -776,20 +775,9 @@ footer p {
 }
 
 .lyrics-search-button:hover,
-.lyrics-result-button:hover,
 .lyrics-back-button:hover {
   background: var(--color-accent);
   color: var(--color-background);
-}
-
-.lyrics-results {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.lyrics-result-button {
-  text-align: left;
 }
 
 .lyrics-selected {
