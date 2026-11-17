@@ -109,7 +109,7 @@ function Phase() {
           setPlayingPhase(null);
           setAudioError({
             phaseId: phase.id,
-            message: `Sample not found. Add the file at public${phase.audio}.`
+            message: `Unable to play this sample. Make sure public${phase.audio} is a valid MP3 file.`
           });
         }
       });
