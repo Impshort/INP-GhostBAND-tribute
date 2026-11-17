@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const papasData = [
 
@@ -20,17 +20,18 @@ const papasData = [
     years: "2012–2015",
     description: "A more charismatic and sinister figure with an iconic painted face mask, papal robes, and casual secular attire.",
     images: [
-      "/images/primo.jpg",
-      "/images/PR_FIRE.jpg", ]
+      "/images/pap/primo.jpg",
+      "/images/pap/PR_FIRE.jpg"
+    ]
   },
   {
     name: "SECONDO",
     years: "2015–2020",
     description: "The suave, younger brother who introduced theatricality, black tuxedos, and acoustic performances.",
     images: [
-      "/images/SECONDO",
-      "/images/SE_DOG.jpg",
-      "/images/SE_shade.jpg"
+      "/images/pap/SECONDO.jpg",
+      "/images/pap/SE_DOG.jpg",
+      "/images/pap/SE_shade.jpg"
     ]
   },
   {
@@ -38,11 +39,11 @@ const papasData = [
     years: "2020–Present",
     description: "The former Cardinal who earned his papal title through hard work, driving Ghost into stadium rock royalty.",
     images: [
-      "/images/TERZO.jpg",
-      "/images/TE_=p.jpg",
-      "/images/TE_CROSSLEGGED.jpg",
-      "/images/TE_TITANIC.jpg",
-      "/images/TE_BUG.jpg"
+      "/images/pap/TERZO.jpg",
+      "/images/pap/TE_=p.jpg",
+      "/images/pap/TE_CROSSLEGGED.jpg",
+      "/images/pap/TE_TITANIC.jpg",
+      "/images/pap/TE_BUG.jpg"
     ]
   },
 
@@ -51,11 +52,11 @@ const papasData = [
     years: "2020–Present",
     description: "The former Cardinal who earned his papal title through hard work, driving Ghost into stadium rock royalty.",
     images: [
-      "/images/COPIA.jpg",
-      "/images/CO_THRUST.jpg",
-      "/images/CO_GAY.jpg",
-      "/images/CO_LEG.jpg",
-      "/images/CO_HAIR.jpg"
+      "/images/pap/COPIA.jpg",
+      "/images/pap/CO_THRUST.jpg",
+      "/images/pap/CO_GAY.jpg",
+      "/images/pap/CO_LEG.jpg",
+      "/images/pap/CO_HAIR.jpg"
     ]
   },
 
@@ -64,28 +65,15 @@ const papasData = [
     years: "2020–Present",
     description: "The former Cardinal who earned his papal title through hard work, driving Ghost into stadium rock royalty.",
     images: [
-      "/images/PERPETUA.jpg",
-      "/images/PE_EYE.jpg",
-      "/images/PE_RUN.jpg"
+      "/images/pap/PERPETUA.jpg",
+      "/images/pap/PE_EYE.jpg",
+      "/images/pap/PE_RUN.jpg"
     ]
-  },
-
-  <p id="FLore">
-            FUN FACT TOBIAS FORGE ACTUALLY WEARS A MASK WHILE ON STAGE PERFORMING. 
-          </p>
+  }
 ];
 
-// Individual Card Component so each Papa has their own independent arrows
 function PapaCard({ papa }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const prevImage = () => {
-    setCurrentIndex((prev) => (prev === 0 ? papa.images.length - 1 : prev - 1));
-  };
-
-  const nextImage = () => {
-    setCurrentIndex((prev) => (prev === papa.images.length - 1 ? 0 : prev + 1));
-  };
 
   return (
     <div 
@@ -98,83 +86,33 @@ function PapaCard({ papa }) {
         boxShadow: '0 4px 10px rgba(0, 0, 0, 0.5)' 
       }}
     >
-      {/* IMAGE CAROUSEL CONTAINER */}
-      <div style={{ position: 'relative', width: '100%', height: '250px', marginBottom: '1rem' }}>
-        <img 
-          src={papa.images[currentIndex]} 
-          alt={`${papa.name} look ${currentIndex + 1}`} 
-          style={{ 
-            width: '100%', 
-            height: '100%', 
-            objectFit: 'cover', 
-            borderRadius: '6px', 
-            border: '1px solid #d4af37'
-          }} 
-        />
-
-        {/* LEFT ARROW */}
-        {papa.images.length > 1 && (
-          <button 
-            onClick={prevImage}
-            aria-label="Previous image"
+      {/* PAPA PORTRAIT */}
+      <div style={{ width: '100%', height: '300px', marginBottom: '1rem' }}>
+        <button
+          type="button"
+          aria-label={`Show another photo of ${papa.name}`}
+          onClick={() => setCurrentIndex((index) => (index + 1) % papa.images.length)}
+          style={{
+            width: '100%',
+            height: '100%',
+            padding: 0,
+            border: 0,
+            background: 'transparent',
+            cursor: 'pointer'
+          }}
+        >
+          <img
+            src={papa.images[currentIndex]}
+            alt={`${papa.name} look ${currentIndex + 1}`}
             style={{
-              position: 'absolute',
-              top: '50%',
-              left: '8px',
-              transform: 'translateY(-50%)',
-              background: 'rgba(0, 0, 0, 0.75)',
-              color: '#d4af37',
-              border: '1px solid #d4af37',
-              borderRadius: '50%',
-              width: '32px',
-              height: '32px',
-              cursor: 'pointer',
-              fontWeight: 'bold'
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              borderRadius: '6px',
+              border: '1px solid #d4af37'
             }}
-          >
-            ‹
-          </button>
-        )}
-
-        {/* RIGHT ARROW */}
-        {papa.images.length > 1 && (
-          <button 
-            onClick={nextImage}
-            aria-label="Next image"
-            style={{
-              position: 'absolute',
-              top: '50%',
-              right: '8px',
-              transform: 'translateY(-50%)',
-              background: 'rgba(0, 0, 0, 0.75)',
-              color: '#d4af37',
-              border: '1px solid #d4af37',
-              borderRadius: '50%',
-              width: '32px',
-              height: '32px',
-              cursor: 'pointer',
-              fontWeight: 'bold'
-            }}
-          >
-            ›
-          </button>
-        )}
-
-        {/* IMAGE COUNTER BADGE (e.g. 1 / 2) */}
-        {papa.images.length > 1 && (
-          <span style={{
-            position: 'absolute',
-            bottom: '8px',
-            right: '8px',
-            background: 'rgba(0, 0, 0, 0.75)',
-            color: '#fff',
-            fontSize: '0.75rem',
-            padding: '2px 8px',
-            borderRadius: '10px'
-          }}>
-            {currentIndex + 1} / {papa.images.length}
-          </span>
-        )}
+          />
+        </button>
       </div>
 
       {/* PAPA DETAILS */}
@@ -196,7 +134,7 @@ function PapaFocus() {
         The Papas Era Focus
       </h2>
       <p style={{ color: '#ccc', marginBottom: '1.5rem' }}>
-        Use the arrows on each frontman's portrait to switch between their iconic looks:
+        Click a portrait to view another look:
       </p>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))', gap: '1.5rem' }}>
