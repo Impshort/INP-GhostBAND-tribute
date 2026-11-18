@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import FavoriteButton from './FavoriteButton';
+import { getFavoriteSongId } from '../utils/favorites';
 
-function LyricsSearch() {
+function LyricsSearch({ favoriteSongs, onToggleFavorite }) {
   const [query, setQuery] = useState('');
   const [selectedLyrics, setSelectedLyrics] = useState(null);
+  const [lyricsVisible, setLyricsVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -41,12 +44,17 @@ function LyricsSearch() {
         throw new Error('The lyrics service returned an unexpected response.');
       }
 
-      if (track.artistName?.trim().toLowerCase() !== 'ghost') {
+      if (
+        typeof track.artistName !== 'string' ||
+        typeof track.trackName !== 'string' ||
+        track.artistName.trim().toLowerCase() !== 'ghost'
+      ) {
         setError(`No Ghost song found for "${trackQuery}". Try another title.`);
         return;
       }
 
       setSelectedLyrics(track);
+      setLyricsVisible(false);
     } catch (searchError) {
       setError(
         searchError instanceof Error
@@ -90,24 +98,45 @@ function LyricsSearch() {
         <div className="lyrics-selected">
           <div className="lyrics-selected-header">
             <h3>{selectedLyrics.trackName}</h3>
-            <button
-              className="lyrics-back-button"
-              type="button"
-              onClick={() => setSelectedLyrics(null)}
-            >
-              Back to search
-            </button>
+            <div className="lyrics-actions">
+              <FavoriteButton
+                isFavorite={favoriteSongs.some(
+                  (favorite) => favorite.favoriteId === getFavoriteSongId(selectedLyrics)
+                )}
+                onClick={() => onToggleFavorite(selectedLyrics)}
+              />
+              <button
+                className="lyrics-back-button"
+                type="button"
+                onClick={() => {
+                  setSelectedLyrics(null);
+                  setLyricsVisible(false);
+                }}
+              >
+                Back to search
+              </button>
+            </div>
           </div>
           <p className="lyrics-meta">
             Album: {selectedLyrics.albumName} | Artist: {selectedLyrics.artistName}
           </p>
 
-          {selectedLyrics.instrumental ? (
-            <p>This track is instrumental.</p>
-          ) : (
-            <pre className="lyrics-text">
-              {selectedLyrics.plainLyrics || 'Plain lyrics unavailable.'}
-            </pre>
+          <button
+            className="lyrics-toggle-button"
+            type="button"
+            aria-expanded={lyricsVisible}
+            onClick={() => setLyricsVisible((visible) => !visible)}
+          >
+            {lyricsVisible ? 'Hide lyrics' : 'Show lyrics'}
+          </button>
+          {lyricsVisible && (
+            selectedLyrics.instrumental ? (
+              <p>This track is instrumental.</p>
+            ) : (
+              <pre className="lyrics-text">
+                {selectedLyrics.plainLyrics || 'Plain lyrics unavailable.'}
+              </pre>
+            )
           )}
         </div>
       )}

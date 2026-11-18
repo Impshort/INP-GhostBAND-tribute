@@ -5,7 +5,8 @@ import Ghoul from './Ghoul';
 import Phase from './phase';
 import PapaFocus from './components/PapaFocus';
 import LyricsSearch from './components/APIforLyrics';
-import AlbumSection from './components/Library';
+import LibrarySection from './components/LibrarySection';
+import { getFavoriteSongId, loadFavoriteSongs } from './utils/favorites';
 
 
 function App() {
@@ -24,6 +25,25 @@ function App() {
     () => localStorage.getItem('ghostRitualVisited') !== 'true'
   );
   const [activeTab, setActiveTab] = useState('lore');
+  const [favoriteSongs, setFavoriteSongs] = useState(loadFavoriteSongs);
+  const [favoritesError, setFavoritesError] = useState('');
+
+  function handleToggleFavorite(song) {
+    const favoriteId = getFavoriteSongId(song);
+    const isFavorite = favoriteSongs.some((favorite) => favorite.favoriteId === favoriteId);
+    const nextFavorites = isFavorite
+      ? favoriteSongs.filter((favorite) => favorite.favoriteId !== favoriteId)
+      : [...favoriteSongs, { ...song, favoriteId }];
+
+    setFavoriteSongs(nextFavorites);
+    try {
+      localStorage.setItem('ghostFavoriteSongs', JSON.stringify(nextFavorites));
+      setFavoritesError('');
+    } catch (storageError) {
+      console.error('Unable to save favorite songs.', storageError);
+      setFavoritesError('Your favorites could not be saved on this device.');
+    }
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -176,12 +196,21 @@ function App() {
           {activeTab === 'phases' && (
             <>
               <Phase />
-              <LyricsSearch />
+              <LyricsSearch
+                favoriteSongs={favoriteSongs}
+                onToggleFavorite={handleToggleFavorite}
+              />
             </>
           )}
           {activeTab === 'ghouls' && <Ghoul />}
           {activeTab === 'papas' && <PapaFocus />}
-          {activeTab === 'albums' && <AlbumSection />}
+          {activeTab === 'library' && (
+            <LibrarySection
+              favoriteSongs={favoriteSongs}
+              onToggleFavorite={handleToggleFavorite}
+              storageError={favoritesError}
+            />
+          )}
         </div>
       </main>
 

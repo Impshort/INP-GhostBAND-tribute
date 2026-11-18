@@ -838,7 +838,8 @@ footer p {
 }
 
 .lyrics-search-button,
-.lyrics-back-button {
+.lyrics-back-button,
+.lyrics-toggle-button {
   padding: 0.6rem 1rem;
   border: 1px solid var(--color-accent);
   border-radius: 4px;
@@ -849,7 +850,8 @@ footer p {
 }
 
 .lyrics-search-button:hover,
-.lyrics-back-button:hover {
+.lyrics-back-button:hover,
+.lyrics-toggle-button:hover {
   background: var(--color-accent);
   color: var(--color-background);
 }
@@ -867,10 +869,51 @@ footer p {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .lyrics-selected-header h3 {
   margin: 0;
+}
+
+.lyrics-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.favorite-button {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.45rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 5px;
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.favorite-button svg {
+  width: 100%;
+  height: 100%;
+}
+
+.favorite-button:hover,
+.favorite-button:focus-visible,
+.favorite-button.is-favorite {
+  background: var(--color-accent);
+  color: var(--color-background);
+}
+
+.favorite-button:focus-visible,
+.lyrics-toggle-button:focus-visible,
+.library-song-title:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
 }
 
 .lyrics-back-button {
@@ -890,6 +933,67 @@ footer p {
   white-space: pre-wrap;
   font: inherit;
   line-height: 1.6;
+}
+
+.lyrics-toggle-button {
+  margin-bottom: 0.75rem;
+}
+
+.library-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.library-song {
+  min-width: 0;
+  padding: 1rem;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+.library-song-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.library-song-title {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-width: 0;
+  padding: 0.25rem 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-text);
+  font: inherit;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: left;
+  cursor: pointer;
+}
+
+.library-song-title:hover {
+  color: var(--color-accent);
+}
+
+.library-song-hint {
+  flex: 0 0 auto;
+  color: var(--color-accent);
+  font-size: 0.8rem;
+  font-weight: normal;
+}
+
+.library-song .lyrics-meta {
+  margin: 0.35rem 0 0;
+}
+
+.library-song .lyrics-text {
+  margin-top: 0.9rem;
 }
 
 .lyrics-error {
