@@ -8,6 +8,15 @@ import LyricsSearch from './components/APIforLyrics';
 import LibrarySection from './components/LibrarySection';
 import { getFavoriteSongId, loadFavoriteSongs } from './utils/favorites';
 
+function getModalInputError(value, fieldLabel) {
+  if (!value.trim()) {
+    return `Please enter ${fieldLabel}.`;
+  }
+  if (!/[\p{L}\p{N}]/u.test(value)) {
+    return `Please include at least one letter or number in ${fieldLabel}.`;
+  }
+  return '';
+}
 
 function App() {
   const [visitorName, setVisitorName] = useState(
@@ -47,8 +56,19 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const finalName = nameInput.trim() || 'Fellow Ghoul';
+    const finalName = nameInput.trim();
     const finalSuggestion = suggestionInput.trim();
+    const nameField = event.currentTarget.elements.namedItem('visitorName');
+    const suggestionField = event.currentTarget.elements.namedItem('bandSuggestion');
+    const nameError = getModalInputError(finalName, 'your name');
+    const suggestionError = getModalInputError(finalSuggestion, 'a band recommendation');
+
+    nameField.setCustomValidity(nameError);
+    suggestionField.setCustomValidity(suggestionError);
+    if (nameError || suggestionError) {
+      (nameError ? nameField : suggestionField).reportValidity();
+      return;
+    }
 
     setVisitorName(finalName);
     setBandSuggestion(finalSuggestion);
@@ -112,13 +132,12 @@ function App() {
                 className="modal-input"
                 type="text"
                 aria-label="Your name"
+                name="visitorName"
                 placeholder="Your Name (e.g. Little Ghoul)"
                 required
                 value={nameInput}
                 onChange={(e) => {
-                  e.target.setCustomValidity(
-                    e.target.value.trim() ? '' : 'Please enter your name.'
-                  );
+                  e.target.setCustomValidity(getModalInputError(e.target.value, 'your name'));
                   setNameInput(e.target.value);
                 }}
               />
@@ -126,12 +145,13 @@ function App() {
                 className="modal-input"
                 type="text"
                 aria-label="Band recommendation"
+                name="bandSuggestion"
                 placeholder="Other band suggestion"
                 required
                 value={suggestionInput}
                 onChange={(e) => {
                   e.target.setCustomValidity(
-                    e.target.value.trim() ? '' : 'Please enter a band recommendation.'
+                    getModalInputError(e.target.value, 'a band recommendation')
                   );
                   setSuggestionInput(e.target.value);
                 }}
