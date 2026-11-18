@@ -5,7 +5,7 @@ import Ghoul from './Ghoul';
 import Phase from './phase';
 import PapaFocus from './components/PapaFocus';
 import LyricsSearch from './components/APIforLyrics';
-import AlbumSection from './components/AlbumSection';
+import AlbumSection from './components/Library';
 
 
 function App() {
@@ -56,7 +56,7 @@ function App() {
         
         {hasVisited && (
           <div className="visitor-welcome">
-            <p><strong>Welcome back, {visitorName}! 🤘</strong></p>
+            <p><strong>Welcome, {visitorName}! 🤘</strong></p>
             {bandSuggestion && (
               <p className="visitor-suggestion">
                 Your recommendation: {bandSuggestion}
@@ -149,6 +149,28 @@ function App() {
                 album cycle as various Ministry characters manipulate things and 
                 eventually kill them off, just for the next Papa to arise." - cd:nixiedust
               </blockquote>
+
+              <figure className="lore-band-card">
+                <img
+                  className="lore-band-image"
+                  src="/images/DBAND.jpg"
+                  alt="Group photo of Ghost"
+                />
+              </figure>
+
+              <article className="leader-card">
+                <img
+                  className="leader-image"
+                  src="/images/tobias.jpg"
+                  alt="Tobias Forge"
+                />
+                <div className="leader-content">
+                  <h3>Band Leader: Tobias Forge</h3>
+                  <div className="leader-info-slot">
+                    Add information about Tobias Forge here.
+                  </div>
+                </div>
+              </article>
             </section>
           )}
           {activeTab === 'phases' && (
@@ -166,7 +188,7 @@ function App() {
       {/* FOOTER */}
       <footer>
         <p>&copy; 2026 Midterm Web Project 
-          | Created for Ghost Band Tribute, all credits go to the respective owners. This is for the purpose of fulfilling my Project</p>
+          | Created for Ghost Band Tribute, all credits go to the respective owners. This is for the purpose of fulfilling my Final Project in school</p>
       </footer>
     </div>
   );
