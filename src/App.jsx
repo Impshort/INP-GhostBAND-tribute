@@ -216,7 +216,7 @@ function App() {
 
       {/* FOOTER */}
       <footer>
-        <p>&copy; 2026 Midterm Web Project 
+        <p>&copy; 2026 Final Web Project 
           | Created for Ghost Band Tribute, all credits go to the respective owners. This is for the purpose of fulfilling my Final Project in school</p>
       </footer>
     </div>

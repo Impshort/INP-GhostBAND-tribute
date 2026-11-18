@@ -131,11 +131,11 @@ function PapaCard({ papa }) {
 function PapaFocus() {
   return (
     <section id="papas" className="PAPA-SECTION" style={{ margin: '2.5rem 0' }}>
-      <h2 style={{ color: '#37d4d4', borderBottom: '1px solid #444', paddingBottom: '0.5rem' }}>
-        The Papas Era Focus
+      <h2 style={{ color: '#fefefe', borderBottom: '1px solid #444', paddingBottom: '0.5rem' }}>
+       Cardinals of Ghost
       </h2>
-      <p style={{ color: '#ccc', marginBottom: '1.5rem' }}>
-        Click a portrait to view another look:
+      <p style={{ color: '#cccccc95', marginBottom: '1.5rem' }}>
+        Click a portrait to view funny photos of each Papa.:
       </p>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))', gap: '1.5rem' }}>

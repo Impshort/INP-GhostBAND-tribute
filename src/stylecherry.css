@@ -912,7 +912,7 @@ footer p {
 .favorite-button:focus-visible,
 .lyrics-toggle-button:focus-visible,
 .library-song-title:focus-visible {
-  outline: 2px solid var(--color-text);
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 
