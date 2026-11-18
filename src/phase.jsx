@@ -1,53 +1,54 @@
 import { useEffect, useRef, useState } from 'react';
+import { publicAsset } from './utils/publicAsset';
 
 const phases = [
   {
     id: 'opus-eponymous',
     album: 'Opus Eponymous',
     years: '2008–2012',
-    cover: '/images/Oe.jpg',
+    cover: publicAsset('images/Oe.jpg'),
     track: 'Ritual',
-    audio: '/audio/phases/Ritual.mp3'
+    audio: publicAsset('audio/phases/Ritual.mp3')
   },
   {
     id: 'infestissumam',
     album: 'Infestissumam',
     years: '2013–2015',
-    cover: '/images/Infes.jpg',
+    cover: publicAsset('images/Infes.jpg'),
     track: 'Year Zero',
-    audio: '/audio/phases/yearzero.mp3'
+    audio: publicAsset('audio/phases/yearzero.mp3')
   },
   {
     id: 'meliora',
     album: 'Meliora',
     years: '2015–2018',
-    cover: '/images/Meli.JPG',
+    cover: publicAsset('images/Meli.JPG'),
     track: 'Mummy Dust',
-    audio: '/audio/phases/mummydust.mp3'
+    audio: publicAsset('audio/phases/mummydust.mp3')
   },
   {
     id: 'prequelle',
     album: 'Prequelle',
     years: '2018–2020',
-    cover: '/images/preq.jpg',
+    cover: publicAsset('images/preq.jpg'),
     track: 'Dance Macabre',
-    audio: '/audio/phases/dance_macabre.mp3'
+    audio: publicAsset('audio/phases/dance_macabre.mp3')
   },
   {
     id: 'impera',
     album: 'Impera',
     years: '2020–2025',
-    cover: '/images/imp.jpg',
+    cover: publicAsset('images/imp.jpg'),
     track: 'Call Me Little Sunshine',
-    audio: '/audio/phases/callme-littlesunshine.mp3'
+    audio: publicAsset('audio/phases/callme-littlesunshine.mp3')
   },
   {
     id: 'skeleta',
     album: 'Skeletá',
     years: '2025–Present',
-    cover: '/images/skele.png',
+    cover: publicAsset('images/skele.png'),
     track: 'Satanized',
-    audio: '/audio/phases/satanized.mp3'
+    audio: publicAsset('audio/phases/satanized.mp3')
   }
 ];
 

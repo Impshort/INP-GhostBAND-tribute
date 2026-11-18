@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { publicAsset } from '../utils/publicAsset';
 
 const papasData = [
 
@@ -8,11 +9,11 @@ const papasData = [
     years: "2008–2012",
     description: "The original elderly frontman who started it all with dark, classical Gregorian chant-infused metal vibes.",
     images: [
-      "/images/pap/NIHIL.jpg",
-      "/images/pap/NI_F.jpg",
-      "/images/pap/NI_shda.jpg",
-      "/images/pap/NI_poopi.jpg",
-      "/images/pap/NI_trum.jpg"
+      publicAsset('images/pap/NIHIL.jpg'),
+      publicAsset('images/pap/NI_F.jpg'),
+      publicAsset('images/pap/NI_shda.jpg'),
+      publicAsset('images/pap/NI_poopi.jpg'),
+      publicAsset('images/pap/NI_trum.jpg')
     ]
   },
   {
@@ -20,8 +21,8 @@ const papasData = [
     years: "2012–2015",
     description: "A more charismatic and sinister figure with an iconic painted face mask, papal robes, and casual secular attire.",
     images: [
-      "/images/pap/primo.jpg",
-      "/images/pap/PR_FIRE.jpg"
+      publicAsset('images/pap/primo.jpg'),
+      publicAsset('images/pap/PR_FIRE.jpg')
     ]
   },
   {
@@ -29,9 +30,9 @@ const papasData = [
     years: "2015–2020",
     description: "The suave, younger brother who introduced theatricality, black tuxedos, and acoustic performances.",
     images: [
-      "/images/pap/SECONDO.jpg",
-      "/images/pap/SE_DOG.jpg",
-      "/images/pap/SE_shade.jpg"
+      publicAsset('images/pap/SECONDO.jpg'),
+      publicAsset('images/pap/SE_DOG.jpg'),
+      publicAsset('images/pap/SE_shade.jpg')
     ]
   },
   {
@@ -39,11 +40,11 @@ const papasData = [
     years: "2020–Present",
     description: "The former Cardinal who earned his papal title through hard work, driving Ghost into stadium rock royalty.",
     images: [
-      "/images/pap/TERZO.jpg",
-      "/images/pap/TE_=p.jpg",
-      "/images/pap/TE_CROSSLEGGED.jpg",
-      "/images/pap/TE_TITANIC.jpg",
-      "/images/pap/TE_BUG.jpg"
+      publicAsset('images/pap/TERZO.jpg'),
+      publicAsset('images/pap/TE_=p.jpg'),
+      publicAsset('images/pap/TE_CROSSLEGGED.jpg'),
+      publicAsset('images/pap/TE_TITANIC.jpg'),
+      publicAsset('images/pap/TE_BUG.jpg')
     ]
   },
 
@@ -52,11 +53,11 @@ const papasData = [
     years: "2020–Present",
     description: "The former Cardinal who earned his papal title through hard work, driving Ghost into stadium rock royalty.",
     images: [
-      "/images/pap/COPIA.jpg",
-      "/images/pap/CO_THRUST.jpg",
-      "/images/pap/CO_GAY.jpg",
-      "/images/pap/CO_LEG.jpg",
-      "/images/pap/CO_HAIR.jpg"
+      publicAsset('images/pap/COPIA.jpg'),
+      publicAsset('images/pap/CO_THRUST.jpg'),
+      publicAsset('images/pap/CO_GAY.jpg'),
+      publicAsset('images/pap/CO_LEG.jpg'),
+      publicAsset('images/pap/CO_HAIR.jpg')
       
     ]
   },
@@ -66,9 +67,9 @@ const papasData = [
     years: "2020–Present",
     description: "The former Cardinal who earned his papal title through hard work, driving Ghost into stadium rock royalty.",
     images: [
-      "/images/pap/PERPETUA.jpg",
-      "/images/pap/PE_EYE.jpg",
-      "/images/pap/PE_RUN.jpg"
+      publicAsset('images/pap/PERPETUA.jpg'),
+      publicAsset('images/pap/PE_EYE.jpg'),
+      publicAsset('images/pap/PE_RUN.jpg')
     ]
   }
 ];

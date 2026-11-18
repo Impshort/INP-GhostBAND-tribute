@@ -7,6 +7,7 @@ import PapaFocus from './components/PapaFocus';
 import LyricsSearch from './components/APIforLyrics';
 import LibrarySection from './components/LibrarySection';
 import { getFavoriteSongId, loadFavoriteSongs } from './utils/favorites';
+import { publicAsset } from './utils/publicAsset';
 
 function getModalInputError(value, fieldLabel) {
   if (!value.trim()) {
@@ -193,7 +194,7 @@ function App() {
               <figure className="lore-band-card">
                 <img
                   className="lore-band-image"
-                  src="/images/DBAND.jpg"
+                  src={publicAsset('images/DBAND.jpg')}
                   alt="Group photo of Ghost"
                 />
               </figure>
@@ -201,7 +202,7 @@ function App() {
               <article className="leader-card">
                 <img
                   className="leader-image"
-                  src="/images/tobias.jpg"
+                  src={publicAsset('images/tobias.jpg')}
                   alt="Tobias Forge"
                 />
                 <div className="leader-content">
