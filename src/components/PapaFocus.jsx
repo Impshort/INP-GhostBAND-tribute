@@ -110,7 +110,7 @@ function PapaCard({ papa }) {
               height: '100%',
               objectFit: 'cover',
               borderRadius: '6px',
-              border: '1px solid #d4af37'
+              border: '1px solid #0d36116b'
             }}
           />
         </button>
