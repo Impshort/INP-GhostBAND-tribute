@@ -923,6 +923,22 @@ footer p {
   white-space: pre-wrap;
   font: inherit;
   line-height: 1.6;
+  scrollbar-color: var(--color-accent) var(--color-background);
+  scrollbar-width: thin;
+}
+
+.lyrics-text::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+.lyrics-text::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+.lyrics-text::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border: 2px solid var(--color-background);
+  border-radius: 999px;
 }
 
 .lyrics-toggle-button {
