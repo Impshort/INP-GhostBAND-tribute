@@ -156,7 +156,7 @@ p {
 
 .lore-band-card {
     width: 100%;
-    max-width: 860px;
+    max-width: 735px;
     margin: 1.25rem auto;
     overflow: hidden;
     background: var(--color-background);
@@ -166,9 +166,10 @@ p {
 }
 
 .lore-band-image {
+    display: block;
     width: 100%;
-    max-height: 430px;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
 }
 
 .lore-band-card figcaption {
