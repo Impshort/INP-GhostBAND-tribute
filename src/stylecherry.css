@@ -908,6 +908,64 @@ footer p {
   color: var(--color-background);
 }
 
+.lyrics-results {
+  display: grid;
+  gap: 0.5rem;
+  max-height: 16rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+  scrollbar-color: var(--color-accent) var(--color-background);
+  scrollbar-width: thin;
+}
+
+.lyrics-result-button {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  background: var(--color-background);
+  color: var(--color-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.lyrics-result-button:hover,
+.lyrics-result-button:focus-visible {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-background);
+}
+
+.lyrics-result-button span {
+  color: var(--color-accent);
+  font-size: 0.85rem;
+}
+
+.lyrics-result-button:hover span,
+.lyrics-result-button:focus-visible span {
+  color: var(--color-background);
+}
+
+.lyrics-results::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+.lyrics-results::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+.lyrics-results::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border: 2px solid var(--color-background);
+  border-radius: 999px;
+}
+
 .lyrics-selected {
   margin-top: 1rem;
   padding: 1rem;

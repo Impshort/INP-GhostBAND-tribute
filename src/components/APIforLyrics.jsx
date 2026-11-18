@@ -4,8 +4,24 @@ import { getFavoriteSongId } from '../utils/favorites';
 
 const songReferenceText = 'Add Ghost song titles here, one per line.';
 
+function getSearchWords(value) {
+  return value
+    .normalize('NFD')
+    .replace(/\p{M}/gu, '')
+    .toLowerCase()
+    .match(/[\p{L}\p{N}]+/gu) || [];
+}
+
+function matchesSongTitle(title, queryWords) {
+  const titleWords = getSearchWords(title);
+  return queryWords.every((queryWord) =>
+    titleWords.some((titleWord) => titleWord.startsWith(queryWord))
+  );
+}
+
 function LyricsSearch({ favoriteSongs, onToggleFavorite }) {
   const [query, setQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
   const [selectedLyrics, setSelectedLyrics] = useState(null);
   const [lyricsVisible, setLyricsVisible] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -17,13 +33,21 @@ function LyricsSearch({ favoriteSongs, onToggleFavorite }) {
 
     if (!trackQuery) return;
 
+    const queryWords = getSearchWords(trackQuery);
+    if (queryWords.length === 0) {
+      setError('Enter at least one letter or number in the song title.');
+      return;
+    }
+
     setLoading(true);
     setError(null);
+    setSearchResults([]);
     setSelectedLyrics(null);
+    setLyricsVisible(false);
 
     try {
       const response = await fetch(
-        `https://lrclib.net/api/get?artist_name=Ghost&track_name=${encodeURIComponent(trackQuery)}`,
+        `https://lrclib.net/api/search?track_name=${encodeURIComponent(queryWords[0])}&artist_name=Ghost`,
         {
           headers: {
             'Lrclib-Client': 'GhostTributeApp v1.0 (https://github.com/capstone)',
@@ -31,32 +55,32 @@ function LyricsSearch({ favoriteSongs, onToggleFavorite }) {
         }
       );
 
-      if (response.status === 404) {
-        setError(`No Ghost song found for "${trackQuery}". Try another title.`);
-        return;
-      }
-
       if (!response.ok) {
         throw new Error(`Lyrics search failed (${response.status}). Please try again.`);
       }
 
-      const track = await response.json();
+      const tracks = await response.json();
 
-      if (!track || typeof track !== 'object' || Array.isArray(track)) {
+      if (!Array.isArray(tracks)) {
         throw new Error('The lyrics service returned an unexpected response.');
       }
 
-      if (
-        typeof track.artistName !== 'string' ||
-        typeof track.trackName !== 'string' ||
-        track.artistName.trim().toLowerCase() !== 'ghost'
-      ) {
-        setError(`No Ghost song found for "${trackQuery}". Try another title.`);
+      const matchingTracks = tracks.filter(
+        (track) =>
+          track &&
+          typeof track === 'object' &&
+          typeof track.artistName === 'string' &&
+          track.artistName.trim().toLowerCase() === 'ghost' &&
+          typeof track.trackName === 'string' &&
+          matchesSongTitle(track.trackName, queryWords)
+      );
+
+      if (matchingTracks.length === 0) {
+        setError(`No Ghost song found matching "${trackQuery}". Try a different part of the title.`);
         return;
       }
 
-      setSelectedLyrics(track);
-      setLyricsVisible(false);
+      setSearchResults(matchingTracks);
     } catch (searchError) {
       setError(
         searchError instanceof Error
@@ -72,7 +96,7 @@ function LyricsSearch({ favoriteSongs, onToggleFavorite }) {
     <section id="lyrics-search" className="lyrics-search">
       <h2>LYRICA</h2>
       <p>
-        Search for a Ghost song by title.
+        Search by part of a Ghost song title and choose a matching result.
       </p>
 
       <div className="song-reference">
@@ -85,7 +109,7 @@ function LyricsSearch({ favoriteSongs, onToggleFavorite }) {
           className="lyrics-search-input"
           type="text"
           aria-label="Song title"
-          placeholder="Enter a Ghost song title (e.g., Dance Macabre)"
+          placeholder="Enter part of a Ghost song title (e.g., Dance)"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
@@ -100,6 +124,27 @@ function LyricsSearch({ favoriteSongs, onToggleFavorite }) {
 
       {loading && <p role="status">Searching ritual archives...</p>}
       {error && <p className="lyrics-error" role="alert">{error}</p>}
+
+      {searchResults.length > 0 && (
+        <ul className="lyrics-results" aria-label="Matching Ghost songs">
+          {searchResults.map((track) => (
+            <li key={getFavoriteSongId(track)}>
+              <button
+                className="lyrics-result-button"
+                type="button"
+                onClick={() => {
+                  setSelectedLyrics(track);
+                  setSearchResults([]);
+                  setLyricsVisible(false);
+                }}
+              >
+                <strong>{track.trackName}</strong>
+                <span>{track.albumName || 'Album unknown'}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
 
       {selectedLyrics && (
         <div className="lyrics-selected">
