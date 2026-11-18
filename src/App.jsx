@@ -179,7 +179,7 @@ function App() {
         >
           {activeTab === 'lore' && (
             <section id="lore" className="LORE">
-              <h2 id="BRILORE">A brief introduction about</h2>
+              <h2 id="BRILORE">Brief Introduction to Ghost Band</h2>
               <p id="FLore">
                 Ghost is a swedish rock band known for their theatrical stage presence with a elaborate backstory.
                 A satanic clergy with a frontman known as "Papa Emiritus".
