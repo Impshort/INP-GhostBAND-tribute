@@ -256,7 +256,9 @@ blockquote {
 .phase-cover {
     width: 100%;
     height: clamp(200px, 30vw, 280px);
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center;
+    background: var(--color-background);
 }
 
 .phase-card-content {
