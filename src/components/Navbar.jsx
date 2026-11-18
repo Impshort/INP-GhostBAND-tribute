@@ -2,8 +2,8 @@ const tabs = [
   { id: 'lore', label: 'Brief Story' },
   { id: 'phases', label: 'Phases & Lyrics' },
   { id: 'ghouls', label: 'Nameless Ghouls' },
-  { id: 'papas', label: 'Papa Focus' },
-  { id: 'albums', label: 'MY FAV ALBUMS' }
+  { id: 'papas', label: 'Cardinals' },
+  { id: 'albums', label: 'Library' }
 ];
 
 function Navbar({ activeTab, onTabChange }) {
