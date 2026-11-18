@@ -857,22 +857,79 @@ footer p {
   font-size: 0.9rem;
 }
 
+.song-reference-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.song-reference-toolbar p {
+  margin: 0;
+}
+
+.song-reference-controls {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 0.5rem;
+}
+
+.song-reference-arrow {
+  display: inline-flex;
+  width: 2.5rem;
+  height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--color-accent);
+  border-radius: 50%;
+  background: var(--color-background);
+  color: var(--color-accent);
+  cursor: pointer;
+}
+
+.song-reference-arrow:hover:not(:disabled),
+.song-reference-arrow:focus-visible {
+  background: var(--color-accent);
+  color: var(--color-background);
+}
+
+.song-reference-arrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.song-reference-arrow svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
 .song-reference-scroll {
   min-width: 0;
   overflow-x: auto;
   overscroll-behavior-x: contain;
-  scrollbar-color: var(--color-accent) var(--color-background);
-  scrollbar-width: thin;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.song-reference-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 .song-reference-albums {
   display: flex;
-  align-items: stretch;
+  align-items: flex-start;
   gap: 0.75rem;
   width: max-content;
   min-width: 100%;
-  padding-bottom: 0.25rem;
-  scroll-snap-type: x mandatory;
+  padding: 0.25rem 0;
 }
 
 .song-reference-album {
@@ -910,19 +967,15 @@ footer p {
   margin-bottom: 0;
 }
 
-.song-reference-scroll::-webkit-scrollbar {
-  width: 0.6rem;
-  height: 0.6rem;
-}
+@media (max-width: 480px) {
+  .song-reference-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 
-.song-reference-scroll::-webkit-scrollbar-track {
-  background: var(--color-background);
-}
-
-.song-reference-scroll::-webkit-scrollbar-thumb {
-  background: var(--color-accent);
-  border: 2px solid var(--color-background);
-  border-radius: 999px;
+  .song-reference-controls {
+    align-self: flex-end;
+  }
 }
 
 .lyrics-search-form {

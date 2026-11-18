@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import FavoriteButton from './FavoriteButton';
 import { getFavoriteSongId } from '../utils/favorites';
 
@@ -130,12 +130,56 @@ function matchesSongTitle(title, queryWords) {
 }
 
 function LyricsSearch({ favoriteSongs, onToggleFavorite }) {
+  const songReferenceRef = useRef(null);
+  const [canScrollToPreviousAlbums, setCanScrollToPreviousAlbums] = useState(false);
+  const [canScrollToNextAlbums, setCanScrollToNextAlbums] = useState(true);
   const [query, setQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [selectedLyrics, setSelectedLyrics] = useState(null);
   const [lyricsVisible, setLyricsVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const updateSongReferenceControls = useCallback(() => {
+    const scrollElement = songReferenceRef.current;
+    if (!scrollElement) return;
+
+    setCanScrollToPreviousAlbums(scrollElement.scrollLeft > 1);
+    setCanScrollToNextAlbums(
+      scrollElement.scrollLeft + scrollElement.clientWidth < scrollElement.scrollWidth - 1
+    );
+  }, []);
+
+  useEffect(() => {
+    const scrollElement = songReferenceRef.current;
+    const albumList = scrollElement?.firstElementChild;
+    if (!scrollElement) return undefined;
+
+    updateSongReferenceControls();
+    scrollElement.addEventListener('scroll', updateSongReferenceControls, { passive: true });
+
+    const resizeObserver = new ResizeObserver(updateSongReferenceControls);
+    resizeObserver.observe(scrollElement);
+    if (albumList) resizeObserver.observe(albumList);
+
+    return () => {
+      scrollElement.removeEventListener('scroll', updateSongReferenceControls);
+      resizeObserver.disconnect();
+    };
+  }, [updateSongReferenceControls]);
+
+  function scrollSongReference(direction) {
+    const scrollElement = songReferenceRef.current;
+    const albumList = scrollElement?.firstElementChild;
+    const firstAlbum = albumList?.firstElementChild;
+    if (!scrollElement || !albumList || !firstAlbum) return;
+
+    const gap = Number.parseFloat(getComputedStyle(albumList).columnGap) || 0;
+    scrollElement.scrollBy({
+      left: direction * (firstAlbum.getBoundingClientRect().width + gap),
+      behavior: 'smooth'
+    });
+  }
 
   async function handleSearch(event) {
     event.preventDefault();
@@ -210,8 +254,35 @@ function LyricsSearch({ favoriteSongs, onToggleFavorite }) {
       </p>
 
       <div className="song-reference">
-        <p>Use this list as a guide when searching for a song.</p>
+        <div className="song-reference-toolbar">
+          <p>Use this list as a guide when searching for a song.</p>
+          <div className="song-reference-controls">
+            <button
+              className="song-reference-arrow"
+              type="button"
+              aria-label="Scroll to previous albums"
+              disabled={!canScrollToPreviousAlbums}
+              onClick={() => scrollSongReference(-1)}
+            >
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m15 18-6-6 6-6" />
+              </svg>
+            </button>
+            <button
+              className="song-reference-arrow"
+              type="button"
+              aria-label="Scroll to next albums"
+              disabled={!canScrollToNextAlbums}
+              onClick={() => scrollSongReference(1)}
+            >
+              <svg aria-hidden="true" viewBox="0 0 24 24">
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </button>
+          </div>
+        </div>
         <div
+          ref={songReferenceRef}
           className="song-reference-scroll"
           role="region"
           aria-label="Ghost songs by album"
