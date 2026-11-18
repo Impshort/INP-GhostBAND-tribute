@@ -1,5 +1,3 @@
-import React from 'react';
-
 function GhoulCard({ name, role, image, customClass }) {
   return (
     <div className={`ghoul-card ${customClass || ''}`}>

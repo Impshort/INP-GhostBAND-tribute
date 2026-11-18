@@ -7,15 +7,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (header) {
         // Calculate current time greeting
         const currentHour = new Date().getHours();
-        let timeGreeting = "Welcome!";
-
-        if (currentHour < 12) {
-            timeGreeting = "Good morning!";
-        } else if (currentHour < 18) {
-            timeGreeting = "Good afternoon!";
-        } else {
-            timeGreeting = "Good evening!";
-        }
+        const timeGreeting = currentHour < 12
+            ? "Good morning!"
+            : currentHour < 18
+                ? "Good afternoon!"
+                : "Good evening!";
 
         // Prompts
         let visitorName = prompt("Welcome to the Ghost Fanpage! What is your name?", "Little Ghoul");
