@@ -2,7 +2,117 @@ import { useState } from 'react';
 import FavoriteButton from './FavoriteButton';
 import { getFavoriteSongId } from '../utils/favorites';
 
-const songReferenceText = 'Add Ghost song titles here, one per line.';
+const songReferenceAlbums = [
+  {
+    title: 'Opus Eponymous (2010)',
+    songs: [
+      'Deus Culpa',
+      'Con Clavi Con Dio',
+      'Ritual',
+      'Elizabeth',
+      'Stand by Him',
+      'Satan Prayer',
+      'Death Knell',
+      'Prime Mover',
+      'Genesis'
+    ]
+  },
+  {
+    title: 'Infestissumam (2013)',
+    songs: [
+      'Infestissumam',
+      'Per Aspera ad Inferi',
+      'Secular Haze',
+      'Jigolo Har Megiddo',
+      'Ghuleh / Zombie Queen',
+      'Year Zero',
+      'Body and Blood',
+      'Idolatrine',
+      "Depth of Satan's Eyes",
+      'Monstrance Clock'
+    ]
+  },
+  {
+    title: 'Meliora (2015)',
+    songs: [
+      'Spirit',
+      'From the Pinnacle to the Pit',
+      'Cirice',
+      'Spöksonat',
+      'He Is',
+      'Mummy Dust',
+      'Majesty',
+      'Devil Church',
+      'Absolution',
+      'Deus in Absentia'
+    ]
+  },
+  {
+    title: 'Popestar EP (2016)',
+    songs: ['Square Hammer', 'Nocturnal Me', 'I Believe', 'Missionary Man', 'Bible']
+  },
+  {
+    title: 'Prequelle (2018)',
+    songs: [
+      'Ashes',
+      'Rats',
+      'Faith',
+      'See the Light',
+      'Miasma',
+      'Dance Macabre',
+      'Pro Memoria',
+      'Witch Image',
+      'Helvetesfönster',
+      'Life Eternal'
+    ]
+  },
+  {
+    title: 'Seven Inches of Satanic Panic EP (2019)',
+    songs: ['Kiss the Go-Goat', 'Mary On A Cross']
+  },
+  {
+    title: 'Impera (2022)',
+    songs: [
+      'Imperium',
+      'Kaisarion',
+      'Spillways',
+      'Call Me Little Sunshine',
+      "Hunter's Moon",
+      'Watcher in the Sky',
+      'Dominion',
+      'Twenties',
+      'Darkness at the Heart of My Love',
+      'Griftwood',
+      'Bite of Passage',
+      'Respite on the Spitalfields'
+    ]
+  },
+  {
+    title: 'Phantomime EP (2023)',
+    songs: [
+      'See No Evil',
+      'Jesus He Knows Me',
+      'Hanging Around',
+      'Phantom of the Opera',
+      "We Don't Need Another Hero"
+    ]
+  },
+  {
+    title: 'Skeletá (2025)',
+    songs: [
+      'Peacefield',
+      'Lachryma',
+      'Satanized',
+      'Guiding Lights',
+      'De Profundis Borealis',
+      'Cenotaph',
+      'Missilia Amori',
+      'Marks of the Evil One',
+      'Umbra',
+      'Excelsis'
+    ]
+  }
+];
 
 function getSearchWords(value) {
   return value
@@ -101,7 +211,23 @@ function LyricsSearch({ favoriteSongs, onToggleFavorite }) {
 
       <div className="song-reference">
         <p>Use this list as a guide when searching for a song.</p>
-        <pre className="song-reference-text">{songReferenceText}</pre>
+        <div
+          className="song-reference-scroll"
+          role="region"
+          aria-label="Ghost songs by album"
+          tabIndex={0}
+        >
+          <div className="song-reference-albums">
+            {songReferenceAlbums.map((album) => (
+              <article className="song-reference-album" key={album.title}>
+                <h3>{album.title}</h3>
+                <ul>
+                  {album.songs.map((song) => <li key={song}>{song}</li>)}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
       </div>
 
       <form className="lyrics-search-form" onSubmit={handleSearch}>
