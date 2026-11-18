@@ -2,6 +2,8 @@ import { useState } from 'react';
 import FavoriteButton from './FavoriteButton';
 import { getFavoriteSongId } from '../utils/favorites';
 
+const songReferenceText = 'Add Ghost song titles here, one per line.';
+
 function LyricsSearch({ favoriteSongs, onToggleFavorite }) {
   const [query, setQuery] = useState('');
   const [selectedLyrics, setSelectedLyrics] = useState(null);
@@ -72,6 +74,12 @@ function LyricsSearch({ favoriteSongs, onToggleFavorite }) {
       <p>
         Search for a Ghost song by title.
       </p>
+
+      <div className="song-reference">
+        <h3>Ghost Song Reference</h3>
+        <p>Use this list as a guide when searching for a song.</p>
+        <pre className="song-reference-text">{songReferenceText}</pre>
+      </div>
 
       <form className="lyrics-search-form" onSubmit={handleSearch}>
         <input
