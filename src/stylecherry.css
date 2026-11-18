@@ -331,7 +331,17 @@ blockquote {
 
 /* HEADER BACKGROUND & LAYOUT*/
 .Ht {
-  background: url('/images/ghost%20band.jpg') no-repeat center center/cover;
+  min-height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('/images/ghost%20band.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   padding: 3rem 1rem;
   text-align: center;
   border-bottom: 2px solid var(--color-accent);
@@ -341,6 +351,11 @@ blockquote {
   color: var(--color-text);
   letter-spacing: 2px;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.Ht p {
+  color: var(--color-text);
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.9);
 }
 
 .visitor-welcome {
