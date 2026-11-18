@@ -830,11 +830,6 @@ footer p {
   border-radius: 6px;
 }
 
-.song-reference h3 {
-  margin-bottom: 0.35rem;
-  color: var(--color-text);
-}
-
 .song-reference p {
   margin-bottom: 0.75rem;
   font-size: 0.9rem;

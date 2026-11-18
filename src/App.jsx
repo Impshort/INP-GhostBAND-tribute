@@ -187,7 +187,7 @@ function App() {
                 <div className="leader-content">
                   <h3>Band Leader: Tobias Forge</h3>
                   <div className="leader-info-slot">
-                    Tobias Forge (born March 3, 1981)
+                    Born March 3, 1981 |
                     For years, his identity was kept a closely guarded secret while he performed anonymously as "Papa Emeritus" 
                     alongside masked bandmates known as the Nameless Ghouls, before his identity was publicly revealed in 2017. Beyond vocals and songwriting, 
                     Forge plays multiple instruments on Ghost's studio albums and portrays the band's evolving line of stage personas—including
