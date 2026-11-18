@@ -840,7 +840,6 @@ footer p {
 }
 
 .lyrics-search-button,
-.lyrics-back-button,
 .lyrics-toggle-button {
   padding: 0.6rem 1rem;
   border: 1px solid var(--color-accent);
@@ -852,7 +851,6 @@ footer p {
 }
 
 .lyrics-search-button:hover,
-.lyrics-back-button:hover,
 .lyrics-toggle-button:hover {
   background: var(--color-accent);
   color: var(--color-background);
@@ -876,12 +874,6 @@ footer p {
 
 .lyrics-selected-header h3 {
   margin: 0;
-}
-
-.lyrics-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
 }
 
 .favorite-button {
@@ -916,10 +908,6 @@ footer p {
 .library-song-title:focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
-}
-
-.lyrics-back-button {
-  padding: 0.4rem 0.6rem;
 }
 
 .lyrics-meta {

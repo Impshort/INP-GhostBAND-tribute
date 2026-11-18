@@ -98,24 +98,12 @@ function LyricsSearch({ favoriteSongs, onToggleFavorite }) {
         <div className="lyrics-selected">
           <div className="lyrics-selected-header">
             <h3>{selectedLyrics.trackName}</h3>
-            <div className="lyrics-actions">
-              <FavoriteButton
-                isFavorite={favoriteSongs.some(
-                  (favorite) => favorite.favoriteId === getFavoriteSongId(selectedLyrics)
-                )}
-                onClick={() => onToggleFavorite(selectedLyrics)}
-              />
-              <button
-                className="lyrics-back-button"
-                type="button"
-                onClick={() => {
-                  setSelectedLyrics(null);
-                  setLyricsVisible(false);
-                }}
-              >
-                Back to search
-              </button>
-            </div>
+            <FavoriteButton
+              isFavorite={favoriteSongs.some(
+                (favorite) => favorite.favoriteId === getFavoriteSongId(selectedLyrics)
+              )}
+              onClick={() => onToggleFavorite(selectedLyrics)}
+            />
           </div>
           <p className="lyrics-meta">
             Album: {selectedLyrics.albumName} | Artist: {selectedLyrics.artistName}
