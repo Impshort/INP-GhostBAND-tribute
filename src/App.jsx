@@ -93,16 +93,28 @@ function App() {
                 type="text"
                 aria-label="Your name"
                 placeholder="Your Name (e.g. Little Ghoul)"
+                required
                 value={nameInput}
-                onChange={(e) => setNameInput(e.target.value)}
+                onChange={(e) => {
+                  e.target.setCustomValidity(
+                    e.target.value.trim() ? '' : 'Please enter your name.'
+                  );
+                  setNameInput(e.target.value);
+                }}
               />
               <input
                 className="modal-input"
                 type="text"
                 aria-label="Band recommendation"
                 placeholder="Other band suggestion"
+                required
                 value={suggestionInput}
-                onChange={(e) => setSuggestionInput(e.target.value)}
+                onChange={(e) => {
+                  e.target.setCustomValidity(
+                    e.target.value.trim() ? '' : 'Please enter a band recommendation.'
+                  );
+                  setSuggestionInput(e.target.value);
+                }}
               />
               <button className="modal-submit" type="submit">
                 Enter Ritual

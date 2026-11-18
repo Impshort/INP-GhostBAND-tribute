@@ -117,7 +117,7 @@ function PapaCard({ papa }) {
       </div>
 
       {/* PAPA DETAILS */}
-      <h3 style={{ color: '#d4af37', fontSize: '1.05rem', margin: '0.4rem 0' }}>{papa.name}</h3>
+      <h3 style={{ color: '#166a1f', fontSize: '1.05rem', margin: '0.4rem 0' }}>{papa.name}</h3>
       <span style={{ display: 'block', color: '#888', fontSize: '0.8rem', marginBottom: '0.6rem' }}>
         {papa.years}
       </span>
@@ -131,7 +131,7 @@ function PapaCard({ papa }) {
 function PapaFocus() {
   return (
     <section id="papas" className="PAPA-SECTION" style={{ margin: '2.5rem 0' }}>
-      <h2 style={{ color: '#d4af37', borderBottom: '1px solid #444', paddingBottom: '0.5rem' }}>
+      <h2 style={{ color: '#37d4d4', borderBottom: '1px solid #444', paddingBottom: '0.5rem' }}>
         The Papas Era Focus
       </h2>
       <p style={{ color: '#ccc', marginBottom: '1.5rem' }}>
