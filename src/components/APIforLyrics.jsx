@@ -76,7 +76,6 @@ function LyricsSearch({ favoriteSongs, onToggleFavorite }) {
       </p>
 
       <div className="song-reference">
-        <h3>Ghost Song Reference</h3>
         <p>Use this list as a guide when searching for a song.</p>
         <pre className="song-reference-text">{songReferenceText}</pre>
       </div>
