@@ -195,11 +195,12 @@ function App() {
           )}
           {activeTab === 'phases' && (
             <>
-              <Phase />
-              <LyricsSearch
+            <LyricsSearch
                 favoriteSongs={favoriteSongs}
                 onToggleFavorite={handleToggleFavorite}
               />
+              <Phase />
+              
             </>
           )}
           {activeTab === 'ghouls' && <Ghoul />}
